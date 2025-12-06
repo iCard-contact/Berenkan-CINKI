@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>iCard - Berenkan Cinki</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-card: #0d1526;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.2);
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.94));
+      border-radius: 24px;
+      padding: 24px 22px 20px;
+      box-shadow:
+        0 22px 60px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(148, 163, 184, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.18), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.16), transparent 55%);
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .icard-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      margin-bottom: 14px;
+    }
+
+    .icard-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #e5e7eb, #22c55e);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .header {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 30% 20%, #1f2937, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 22px;
+      color: #e5e7eb;
+      box-shadow:
+        0 14px 35px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(148, 163, 184, 0.45);
+    }
+
+    .name-block h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .name-block p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .chip {
+      margin-left: auto;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(37, 99, 235, 0.5);
+      color: #bfdbfe;
+      white-space: nowrap;
+    }
+
+    .divider {
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      margin: 12px 0 14px;
+    }
+
+    .info {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-label {
+      min-width: 52px;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: #6b7280;
+    }
+
+    .contact-value a {
+      color: #d1d5db;
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #f9fafb;
+      box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.6),
+        0 0 0 1px rgba(191, 219, 254, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 18px 40px rgba(37, 99, 235, 0.75),
+        0 0 0 1px rgba(191, 219, 254, 0.4);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.7);
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .footer a {
+      color: #9ca3af;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px 18px 18px;
+      }
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="card-inner">
+      <div class="icard-badge">
+        <span class="icard-dot"></span>
+        <span>iCard • Carte de visite NFC</span>
+      </div>
+
+      <div class="header">
+        <div class="avatar">
+          <!-- Initiales -->
+          BC
+        </div>
+        <div class="name-block">
+          <h1>Berenkan Cinki</h1>
+          <p>CdT Demathieu Bard • iCard</p>
+        </div>
+        <div class="chip">Tap to save</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="info">
+        Carte de visite NFC iCard. Scanne cette carte avec ton smartphone pour
+        me contacter ou enregistrer mes coordonnées.
+      </p>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <div class="contact-label">Tél.</div>
+          <div class="contact-value">
+            <a href="tel:+33651540299">+33 6 51 54 02 99</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">
+            <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241//" target="_blank" rel="noreferrer">
+              Mon profil LinkedIn
+            </a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Site</div>
+          <div class="contact-value">
+            <a href="https://icard.example.com" target="_blank" rel="noreferrer">
+              https://icard.example.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <!-- Remplace l'URL du .vcf par la tienne une fois hébergé -->
+        <a class="btn btn-primary" href="https://ton-domaine.com/berenkan.vcf">
+          Ajouter à mes contacts
+        </a>
+        <a class="btn btn-ghost" href="mailto:prenom.nom@mail.com">
+          Envoyer un email
+        </a>
+      </div>
+
+      <div class="footer">
+        <span>© iCard</span>
+        <span>
+          Propulsé par <a href="#">iCard NFC</a>
+        </span>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
