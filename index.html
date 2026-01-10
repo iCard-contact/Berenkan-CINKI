@@ -26,9 +26,26 @@
       background:radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
       color:var(--text);
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:center;
-      padding:20px;
+      padding:40px 20px 20px;
+    }
+
+    /* LOGO pleine largeur */
+    .logo-banner{
+      width:100%;
+      max-width:420px;
+      margin:0 auto -40px;
+      z-index:2;
+      position:relative;
+    }
+
+    .logo-banner img{
+      width:100%;
+      height:120px;
+      object-fit:contain;
+      display:block;
+      filter:drop-shadow(0 20px 28px rgba(0,0,0,.5));
     }
 
     .card{
@@ -36,44 +53,9 @@
       max-width:420px;
       background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
       border-radius:24px;
-      padding:24px 22px 20px;
+      padding:70px 22px 20px;
       box-shadow:0 22px 60px rgba(15,23,42,.9), 0 0 0 1px rgba(148,163,184,.18);
       position:relative;
-      overflow:visible; /* permet au logo de dépasser */
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:
-        radial-gradient(circle at 0 0, rgba(37,99,235,.18), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(59,130,246,.16), transparent 55%);
-      opacity:.9;
-      z-index:0;
-      pointer-events:none;
-    }
-
-    .card-inner{
-      position:relative;
-      z-index:1;
-      padding-top:46px; /* espace sous le logo qui dépasse */
-    }
-
-    /* 1) Logo : PAS de nouveau cadre, plein largeur, détaché, qui dépasse au-dessus */
-    .icard-logo{
-      position:absolute;
-      left:0;
-      right:0;
-      top:-34px;
-      width:100%;
-      height:70px;
-      object-fit:contain;
-      display:block;
-      padding:0 18px; /* aligne avec le padding de la card */
-      filter: drop-shadow(0 14px 22px rgba(0,0,0,.45));
-      z-index:2;
-      pointer-events:none; /* le logo n'intercepte pas les clics */
     }
 
     .icard-badge{
@@ -101,24 +83,23 @@
 
     .header{
       display:flex;
-      gap:14px;
+      gap:16px;
       align-items:center;
-      margin-bottom:16px;
+      margin-bottom:18px;
     }
 
-    /* 2) Photo plus grande et plus visible */
     .avatar{
-      width:84px;
-      height:84px;
-      border-radius:22px;
+      width:96px;
+      height:96px;
+      border-radius:26px;
       background:#0b1220;
       border:1px solid rgba(148,163,184,.55);
       overflow:hidden;
-      box-shadow:0 16px 38px rgba(0,0,0,.35), 0 0 0 1px rgba(148,163,184,.25);
+      box-shadow:0 16px 38px rgba(0,0,0,.35);
       flex:0 0 auto;
     }
 
-    .avatar-img{
+    .avatar img{
       width:100%;
       height:100%;
       object-fit:cover;
@@ -126,71 +107,58 @@
     }
 
     .name-block h1{
-      font-size:22px;
+      font-size:23px;
       font-weight:600;
-      margin-bottom:4px;
+      margin-bottom:6px;
     }
 
     .name-block p{
-      font-size:13px;
+      font-size:14px;
       color:var(--text-muted);
     }
 
-    /* 7) Chip cliquable vers la fiche contact (VCF) */
     .chip{
       margin-left:auto;
       font-size:11px;
-      padding:4px 10px;
+      padding:5px 12px;
       border-radius:999px;
       background:var(--accent-soft);
       border:1px solid rgba(37,99,235,.5);
       color:#bfdbfe;
-      white-space:nowrap;
       text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
       cursor:pointer;
-      transition:transform .12s ease, box-shadow .12s ease;
-    }
-
-    .chip:hover{
-      transform:translateY(-1px);
-      box-shadow:0 10px 26px rgba(37,99,235,.25);
     }
 
     .divider{
       border-top:1px solid var(--border);
-      margin:12px 0 14px;
+      margin:14px 0 16px;
     }
 
-    /* 6) Texte milieu synthétique */
     .info{
-      font-size:13px;
+      font-size:14px;
       color:var(--text-muted);
       line-height:1.45;
-      margin-bottom:14px;
+      margin-bottom:16px;
     }
 
     .contact-list{
       display:flex;
       flex-direction:column;
-      gap:8px;
-      margin-bottom:14px;
+      gap:10px;
+      margin-bottom:16px;
     }
 
     .contact-item{
       display:flex;
-      align-items:center;
-      gap:10px;
-      font-size:13px;
+      gap:12px;
+      font-size:14px;
       color:var(--text-muted);
     }
 
     .contact-label{
-      min-width:78px;
+      min-width:90px;
+      font-size:11px;
       text-transform:uppercase;
-      font-size:10px;
       letter-spacing:.08em;
       color:#6b7280;
     }
@@ -200,169 +168,128 @@
       text-decoration:none;
     }
 
-    .contact-value a:hover{
-      text-decoration:underline;
-    }
-
     .buttons{
       display:grid;
       grid-template-columns:1.2fr 1fr;
-      gap:8px;
+      gap:10px;
       margin-bottom:10px;
     }
 
     .btn{
       border-radius:999px;
-      padding:9px 10px;
-      font-size:13px;
+      padding:10px;
+      font-size:14px;
       font-weight:500;
       border:0;
       cursor:pointer;
-      display:inline-flex;
+      text-decoration:none;
+      display:flex;
       align-items:center;
       justify-content:center;
-      gap:6px;
-      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
-      text-decoration:none;
       white-space:nowrap;
     }
 
     .btn-primary{
       background:linear-gradient(135deg,#2563eb,#1d4ed8);
-      color:#f9fafb;
-      box-shadow:0 12px 28px rgba(37,99,235,.6), 0 0 0 1px rgba(191,219,254,.25);
-    }
-
-    .btn-primary:hover{
-      transform:translateY(-1px);
-      box-shadow:0 18px 40px rgba(37,99,235,.75), 0 0 0 1px rgba(191,219,254,.35);
+      color:#fff;
+      box-shadow:0 14px 30px rgba(37,99,235,.6);
     }
 
     .btn-ghost{
       background:rgba(15,23,42,.7);
-      color:#e5e7eb;
       border:1px solid rgba(148,163,184,.6);
-    }
-
-    .btn-ghost:hover{
-      background:rgba(15,23,42,.9);
-      transform:translateY(-1px);
+      color:#fff;
     }
 
     .footer{
       display:flex;
       justify-content:space-between;
-      align-items:center;
       font-size:11px;
       color:#6b7280;
-      margin-top:4px;
+      margin-top:6px;
     }
 
-    .footer a{
-      color:#9ca3af;
-      text-decoration:none;
-    }
-
-    .footer a:hover{
-      text-decoration:underline;
-    }
-
-    @media (max-width:480px){
-      .card{padding:20px 18px 18px;}
-      .buttons{grid-template-columns:1fr;}
-      .contact-label{min-width:70px;}
-      .avatar{width:78px;height:78px;}
-      .icard-logo{height:64px; top:-30px;}
-      .card-inner{padding-top:42px;}
+    @media(max-width:480px){
+      .logo-banner img{height:100px;}
+      .avatar{width:88px;height:88px;}
     }
   </style>
 </head>
 
 <body>
+
+  <!-- LOGO pleine largeur -->
+  <div class="logo-banner">
+    <img src="Logo.png" alt="Logo iCard">
+  </div>
+
   <main class="card">
-    <!-- Logo (fichier : Logo.png) — plein largeur, sans cadre -->
-    <img src="Logo.png" alt="Logo iCard" class="icard-logo" />
 
-    <div class="card-inner">
-      <div class="icard-badge">
-        <span class="icard-dot"></span>
-        <span>iCard • Carte de visite</span>
+    <div class="icard-badge">
+      <span class="icard-dot"></span>
+      <span>iCard • Carte de visite</span>
+    </div>
+
+    <div class="header">
+      <div class="avatar">
+        <img src="Photo.jpg" alt="Berenkan Cinki">
       </div>
 
-      <div class="header">
-        <div class="avatar">
-          <!-- Photo (fichier : Photo.jpg) -->
-          <img src="Photo.jpg" alt="Berenkan Cinki" class="avatar-img">
-        </div>
-
-        <div class="name-block">
-          <h1>Berenkan Cinki</h1>
-          <!-- 3) Titre modifié -->
-          <p>Ingénieur Travaux Demathieu Bard</p>
-        </div>
-
-        <!-- 7) “Tap to save” cliquable vers le VCF -->
-        <a class="chip" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Tap to save</a>
+      <div class="name-block">
+        <h1>Berenkan Cinki</h1>
+        <p>Ingénieur Travaux Demathieu Bard</p>
       </div>
 
-      <div class="divider"></div>
+      <a class="chip" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Tap to save</a>
+    </div>
 
-      <!-- 6) Texte synthétique -->
-      <p class="info">
-        Toutes mes coordonnées en un clic : ajoute mon contact ou écris-moi directement.
-      </p>
+    <div class="divider"></div>
 
-      <div class="contact-list">
-        <div class="contact-item">
-          <div class="contact-label">TÉL</div>
-          <div class="contact-value">
-            <a href="tel:+33651540299">+33 6 51 54 02 99</a>
-          </div>
-        </div>
+    <p class="info">
+      Retrouvez toutes mes coordonnées professionnelles et ajoutez-moi en contact en un seul geste.
+    </p>
 
-        <div class="contact-item">
-          <div class="contact-label">EMAIL</div>
-          <div class="contact-value">
-            <a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a>
-          </div>
-        </div>
+    <div class="contact-list">
+      <div class="contact-item">
+        <div class="contact-label">TÉL</div>
+        <div class="contact-value"><a href="tel:+33651540299">+33 6 51 54 02 99</a></div>
+      </div>
 
-        <div class="contact-item">
-          <div class="contact-label">LINKEDIN</div>
-          <div class="contact-value">
-            <!-- 4) Texte affiché “Berenkan CINKI” mais lien LinkedIn -->
-            <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank" rel="noreferrer">
-              Berenkan CINKI
-            </a>
-          </div>
-        </div>
+      <div class="contact-item">
+        <div class="contact-label">EMAIL</div>
+        <div class="contact-value"><a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a></div>
+      </div>
 
-        <div class="contact-item">
-          <div class="contact-label">SITE</div>
-          <div class="contact-value">
-            <a href="https://icard.example.com" target="_blank" rel="noreferrer">
-              https://icard.example.com
-            </a>
-          </div>
+      <div class="contact-item">
+        <div class="contact-label">LINKEDIN</div>
+        <div class="contact-value">
+          <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank">
+            Berenkan CINKI
+          </a>
         </div>
       </div>
 
-      <div class="buttons">
-        <a class="btn btn-primary" href="https://berenkan.github.io/I-Card-/berenkan.vcf">
-          Ajouter à mes contacts
-        </a>
-
-        <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">
-          Envoyer un email
-        </a>
-      </div>
-
-      <div class="footer">
-        <span>© iCard</span>
-        <!-- 5) “NFC” supprimé -->
-        <span>Propulsé par <a href="#">iCard</a></span>
+      <div class="contact-item">
+        <div class="contact-label">SITE</div>
+        <div class="contact-value">
+          <a href="https://icard.example.com" target="_blank">
+            https://icard.example.com
+          </a>
+        </div>
       </div>
     </div>
+
+    <div class="buttons">
+      <a class="btn btn-primary" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Ajouter à mes contacts</a>
+      <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">Envoyer un email</a>
+    </div>
+
+    <div class="footer">
+      <span>© iCard</span>
+      <span>Propulsé par iCard</span>
+    </div>
+
   </main>
+
 </body>
 </html>
