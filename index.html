@@ -1,295 +1,268 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>iCard - Berenkan Cinki</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<title>iCard - Berenkan Cinki</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root{
-      --accent:#2563eb;
-      --accent-soft:rgba(37,99,235,.2);
-      --text:#f9fafb;
-      --text-muted:#9ca3af;
-      --border:rgba(148,163,184,.35);
-    }
+<style>
+:root{
+  --accent:#2563eb;
+  --accent-soft:rgba(37,99,235,.2);
+  --text:#f9fafb;
+  --text-muted:#9ca3af;
+  --border:rgba(148,163,184,.35);
+}
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
 
-    body{
-      min-height:100vh;
-      background:radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
-      color:var(--text);
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      padding:40px 20px 20px;
-    }
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:40px 20px 20px;
+}
 
-    /* LOGO pleine largeur */
-    .logo-banner{
-      width:100%;
-      max-width:420px;
-      margin:0 auto -40px;
-      z-index:2;
-      position:relative;
-    }
+/* LOGO */
+.logo-banner{
+  width:100%;
+  max-width:420px;
+  margin-bottom:-40px;
+}
+.logo-banner img{
+  width:100%;
+  height:120px;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 20px 28px rgba(0,0,0,.5));
+}
 
-    .logo-banner img{
-      width:100%;
-      height:120px;
-      object-fit:contain;
-      display:block;
-      filter:drop-shadow(0 20px 28px rgba(0,0,0,.5));
-    }
+/* PHOTO GÉANTE */
+.photo-float{
+  width:260px;
+  height:260px;
+  border-radius:40px;
+  overflow:hidden;
+  margin-top:-160px;   /* la fait sortir très haut */
+  margin-bottom:-40px;
+  border:2px solid rgba(148,163,184,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.6);
+  background:#000;
+  z-index:5;
+}
 
-    .card{
-      width:100%;
-      max-width:420px;
-      background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
-      border-radius:24px;
-      padding:70px 22px 20px;
-      box-shadow:0 22px 60px rgba(15,23,42,.9), 0 0 0 1px rgba(148,163,184,.18);
-      position:relative;
-    }
+.photo-float img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-    .icard-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--text-muted);
-      padding:4px 10px;
-      border-radius:999px;
-      background:rgba(15,23,42,.85);
-      border:1px solid var(--border);
-      margin-bottom:14px;
-    }
+/* CARD */
+.card{
+  width:100%;
+  max-width:420px;
+  background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
+  border-radius:24px;
+  padding:90px 22px 20px;
+  box-shadow:0 22px 60px rgba(15,23,42,.9),0 0 0 1px rgba(148,163,184,.18);
+}
 
-    .icard-dot{
-      width:9px;
-      height:9px;
-      border-radius:999px;
-      background:radial-gradient(circle at 30% 30%, #e5e7eb, #22c55e);
-      box-shadow:0 0 12px rgba(34,197,94,.9);
-    }
+.icard-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--text-muted);
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(15,23,42,.85);
+  border:1px solid var(--border);
+  margin-bottom:14px;
+}
 
-    .header{
-      display:flex;
-      gap:16px;
-      align-items:center;
-      margin-bottom:18px;
-    }
+.icard-dot{
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, #e5e7eb, #22c55e);
+  box-shadow:0 0 12px rgba(34,197,94,.9);
+}
 
-    .avatar{
-      width:96px;
-      height:96px;
-      border-radius:26px;
-      background:#0b1220;
-      border:1px solid rgba(148,163,184,.55);
-      overflow:hidden;
-      box-shadow:0 16px 38px rgba(0,0,0,.35);
-      flex:0 0 auto;
-    }
+.name-block h1{
+  font-size:24px;
+  font-weight:600;
+  margin-bottom:6px;
+}
 
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
+.name-block p{
+  font-size:14px;
+  color:var(--text-muted);
+  margin-bottom:14px;
+}
 
-    .name-block h1{
-      font-size:23px;
-      font-weight:600;
-      margin-bottom:6px;
-    }
+.chip{
+  display:inline-block;
+  font-size:11px;
+  padding:5px 12px;
+  border-radius:999px;
+  background:var(--accent-soft);
+  border:1px solid rgba(37,99,235,.5);
+  color:#bfdbfe;
+  text-decoration:none;
+  margin-bottom:16px;
+}
 
-    .name-block p{
-      font-size:14px;
-      color:var(--text-muted);
-    }
+.divider{
+  border-top:1px solid var(--border);
+  margin:12px 0 14px;
+}
 
-    .chip{
-      margin-left:auto;
-      font-size:11px;
-      padding:5px 12px;
-      border-radius:999px;
-      background:var(--accent-soft);
-      border:1px solid rgba(37,99,235,.5);
-      color:#bfdbfe;
-      text-decoration:none;
-      cursor:pointer;
-    }
+.info{
+  font-size:14px;
+  color:var(--text-muted);
+  margin-bottom:16px;
+}
 
-    .divider{
-      border-top:1px solid var(--border);
-      margin:14px 0 16px;
-    }
+.contact-item{
+  display:flex;
+  gap:12px;
+  font-size:14px;
+  margin-bottom:10px;
+}
 
-    .info{
-      font-size:14px;
-      color:var(--text-muted);
-      line-height:1.45;
-      margin-bottom:16px;
-    }
+.contact-label{
+  min-width:90px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:#6b7280;
+}
 
-    .contact-list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-bottom:16px;
-    }
+.contact-value a{
+  color:#d1d5db;
+  text-decoration:none;
+}
 
-    .contact-item{
-      display:flex;
-      gap:12px;
-      font-size:14px;
-      color:var(--text-muted);
-    }
+.buttons{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:10px;
+  margin:18px 0 10px;
+}
 
-    .contact-label{
-      min-width:90px;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:#6b7280;
-    }
+.btn{
+  border-radius:999px;
+  padding:10px;
+  font-size:14px;
+  font-weight:500;
+  border:0;
+  cursor:pointer;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .contact-value a{
-      color:#d1d5db;
-      text-decoration:none;
-    }
+.btn-primary{
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  color:#fff;
+}
 
-    .buttons{
-      display:grid;
-      grid-template-columns:1.2fr 1fr;
-      gap:10px;
-      margin-bottom:10px;
-    }
+.btn-ghost{
+  background:rgba(15,23,42,.7);
+  border:1px solid rgba(148,163,184,.6);
+  color:#fff;
+}
 
-    .btn{
-      border-radius:999px;
-      padding:10px;
-      font-size:14px;
-      font-weight:500;
-      border:0;
-      cursor:pointer;
-      text-decoration:none;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      white-space:nowrap;
-    }
-
-    .btn-primary{
-      background:linear-gradient(135deg,#2563eb,#1d4ed8);
-      color:#fff;
-      box-shadow:0 14px 30px rgba(37,99,235,.6);
-    }
-
-    .btn-ghost{
-      background:rgba(15,23,42,.7);
-      border:1px solid rgba(148,163,184,.6);
-      color:#fff;
-    }
-
-    .footer{
-      display:flex;
-      justify-content:space-between;
-      font-size:11px;
-      color:#6b7280;
-      margin-top:6px;
-    }
-
-    @media(max-width:480px){
-      .logo-banner img{height:100px;}
-      .avatar{width:88px;height:88px;}
-    }
-  </style>
+.footer{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  color:#6b7280;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- LOGO pleine largeur -->
-  <div class="logo-banner">
-    <img src="Logo.png" alt="Logo iCard">
+<!-- LOGO -->
+<div class="logo-banner">
+  <img src="Logo.png" alt="Logo iCard">
+</div>
+
+<!-- PHOTO GÉANTE HORS CADRE -->
+<div class="photo-float">
+  <img src="Photo.jpg" alt="Berenkan Cinki">
+</div>
+
+<!-- CARD -->
+<div class="card">
+
+  <div class="icard-badge">
+    <span class="icard-dot"></span>
+    <span>iCard • Carte de visite</span>
   </div>
 
-  <main class="card">
+  <div class="name-block">
+    <h1>Berenkan Cinki</h1>
+    <p>Ingénieur Travaux Demathieu Bard</p>
+  </div>
 
-    <div class="icard-badge">
-      <span class="icard-dot"></span>
-      <span>iCard • Carte de visite</span>
+  <a class="chip" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Tap to save</a>
+
+  <div class="divider"></div>
+
+  <p class="info">
+    Retrouvez toutes mes coordonnées professionnelles et ajoutez-moi en contact instantanément.
+  </p>
+
+  <div class="contact-item">
+    <div class="contact-label">TÉL</div>
+    <div class="contact-value"><a href="tel:+33651540299">+33 6 51 54 02 99</a></div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-label">EMAIL</div>
+    <div class="contact-value"><a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a></div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-label">LINKEDIN</div>
+    <div class="contact-value">
+      <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank">
+        Berenkan CINKI
+      </a>
     </div>
+  </div>
 
-    <div class="header">
-      <div class="avatar">
-        <img src="Photo.jpg" alt="Berenkan Cinki">
-      </div>
-
-      <div class="name-block">
-        <h1>Berenkan Cinki</h1>
-        <p>Ingénieur Travaux Demathieu Bard</p>
-      </div>
-
-      <a class="chip" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Tap to save</a>
+  <div class="contact-item">
+    <div class="contact-label">SITE</div>
+    <div class="contact-value">
+      <a href="https://icard.example.com" target="_blank">https://icard.example.com</a>
     </div>
+  </div>
 
-    <div class="divider"></div>
+  <div class="buttons">
+    <a class="btn btn-primary" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Ajouter à mes contacts</a>
+    <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">Envoyer un email</a>
+  </div>
 
-    <p class="info">
-      Retrouvez toutes mes coordonnées professionnelles et ajoutez-moi en contact en un seul geste.
-    </p>
+  <div class="footer">
+    <span>© iCard</span>
+    <span>Propulsé par iCard</span>
+  </div>
 
-    <div class="contact-list">
-      <div class="contact-item">
-        <div class="contact-label">TÉL</div>
-        <div class="contact-value"><a href="tel:+33651540299">+33 6 51 54 02 99</a></div>
-      </div>
-
-      <div class="contact-item">
-        <div class="contact-label">EMAIL</div>
-        <div class="contact-value"><a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a></div>
-      </div>
-
-      <div class="contact-item">
-        <div class="contact-label">LINKEDIN</div>
-        <div class="contact-value">
-          <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank">
-            Berenkan CINKI
-          </a>
-        </div>
-      </div>
-
-      <div class="contact-item">
-        <div class="contact-label">SITE</div>
-        <div class="contact-value">
-          <a href="https://icard.example.com" target="_blank">
-            https://icard.example.com
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="buttons">
-      <a class="btn btn-primary" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Ajouter à mes contacts</a>
-      <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">Envoyer un email</a>
-    </div>
-
-    <div class="footer">
-      <span>© iCard</span>
-      <span>Propulsé par iCard</span>
-    </div>
-
-  </main>
+</div>
 
 </body>
 </html>
