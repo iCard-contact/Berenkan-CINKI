@@ -61,6 +61,15 @@
       z-index: 1;
     }
 
+    /* Logo iCard */
+    .icard-logo {
+      height: 34px;
+      display: block;
+      margin: 0 0 10px;
+      opacity: 0.95;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
+    }
+
     .icard-badge {
       display: inline-flex;
       align-items: center;
@@ -97,22 +106,21 @@
       border-radius: 18px;
       background: radial-gradient(circle at 30% 20%, #1f2937, #020617);
       border: 1px solid rgba(148, 163, 184, 0.5);
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 22px;
-      color: #e5e7eb;
       box-shadow:
         0 14px 35px rgba(15, 23, 42, 0.9),
         0 0 0 1px rgba(148, 163, 184, 0.45);
-      .avatar-img {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  object-fit: cover;
-  display: block;
-}
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      object-fit: cover;
+      display: block;
     }
 
     .name-block h1 {
@@ -261,6 +269,10 @@
 <body>
   <main class="card">
     <div class="card-inner">
+
+      <!-- Logo iCard (fichier dans ton repo : "Logo ICARD.jpg") -->
+      <img src="Logo%20ICARD.jpg" alt="Logo iCard" class="icard-logo">
+
       <div class="icard-badge">
         <span class="icard-dot"></span>
         <span>iCard • Carte de visite NFC</span>
@@ -268,7 +280,8 @@
 
       <div class="header">
         <div class="avatar">
-          <img src="photo.jpg" alt="Berenkan Cinki" class="avatar-img">
+          <!-- Photo (fichier dans ton repo : "Photo.jpg") -->
+          <img src="Photo.jpg" alt="Berenkan Cinki" class="avatar-img">
         </div>
         <div class="name-block">
           <h1>Berenkan Cinki</h1>
@@ -300,7 +313,7 @@
         <div class="contact-item">
           <div class="contact-label">LinkedIn</div>
           <div class="contact-value">
-            <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241//" target="_blank" rel="noreferrer">
+            <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank" rel="noreferrer">
               Mon profil LinkedIn
             </a>
           </div>
@@ -316,11 +329,11 @@
       </div>
 
       <div class="buttons">
-        <!-- Remplace l'URL du .vcf par la tienne une fois hébergé -->
-        <a class="btn btn-primary" href=""https://berenkan.github.io/I-Card-/berenkan.vcf">
-          
+        <!-- Bouton VCF corrigé (plus de guillemets en double) -->
+        <a class="btn btn-primary" href="https://berenkan.github.io/I-Card-/berenkan.vcf">
           Ajouter à mes contacts
         </a>
+
         <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">
           Envoyer un email
         </a>
@@ -328,14 +341,14 @@
 
       <div class="footer">
         <span>© iCard</span>
-        <span>
-          Propulsé par <a href="#">iCard NFC</a>
-        </span>
+        <span>Propulsé par <a href="#">iCard NFC</a></span>
       </div>
     </div>
   </main>
 </body>
 </html>
+
+
 
 
 
