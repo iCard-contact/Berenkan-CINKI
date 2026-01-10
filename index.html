@@ -168,6 +168,21 @@ body{
   color:#fff;
 }
 
+/* bouton contact sur 2 lignes */
+.btn-contact{
+  flex-direction:column;
+  line-height:1.2;
+}
+
+.btn-contact span{
+  display:block;
+}
+
+.btn-contact .btn-sub{
+  font-size:12px;
+  opacity:.85;
+}
+
 .btn-ghost{
   background:rgba(15,23,42,.7);
   border:1px solid rgba(148,163,184,.6);
@@ -218,7 +233,7 @@ body{
     <p>Ingénieur Travaux Demathieu Bard</p>
   </div>
 
-  <a class="chip" href="https://berenkan.github.io/I-Card-/berenkan.vcf">Tap to save</a>
+  <a class="chip" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">Tap to save</a>
 
   <div class="divider"></div>
 
@@ -253,15 +268,16 @@ body{
   <div class="contact-item">
     <div class="contact-label">SITE</div>
     <div class="contact-value">
-      <a href="https://icard.example.com" target="_blank">
-        https://icard.example.com
+      <a href="https://icard-contact.github.io/Berenkan-CINKI/" target="_blank">
+        https://icard-contact.github.io/Berenkan-CINKI/
       </a>
     </div>
   </div>
 
   <div class="buttons">
-    <a class="btn btn-primary" href="https://berenkan.github.io/I-Card-/berenkan.vcf">
-      Ajouter à mes contacts
+    <a class="btn btn-primary btn-contact" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
+      <span>Ajouter à mes</span>
+      <span class="btn-sub">contacts</span>
     </a>
     <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">
       Envoyer un email
@@ -282,3 +298,4 @@ body{
 
 </body>
 </html>
+
