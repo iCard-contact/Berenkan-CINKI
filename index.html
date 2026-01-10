@@ -31,7 +31,7 @@ body{
   padding:40px 20px 40px;
 }
 
-/* PHOTO flottante */
+/* PHOTO */
 .photo-float{
   width:219px;
   height:219px;
@@ -62,6 +62,7 @@ body{
   margin-bottom:40px;
 }
 
+/* TEXT */
 .icard-badge{
   display:inline-flex;
   align-items:center;
@@ -121,6 +122,7 @@ body{
   line-height:1.5;
 }
 
+/* CONTACT */
 .contact-item{
   display:flex;
   gap:12px;
@@ -141,17 +143,18 @@ body{
   text-decoration:none;
 }
 
+/* BUTTONS */
 .buttons{
   display:grid;
-  grid-template-columns:1.2fr 1fr;
+  grid-template-columns:1fr 1fr;
   gap:10px;
   margin:18px 0 10px;
 }
 
 .btn{
   border-radius:999px;
-  padding:10px 14px;
-  font-size:14px;
+  padding:10px 12px;
+  font-size:13px;
   font-weight:500;
   border:0;
   cursor:pointer;
@@ -159,28 +162,14 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  text-align:center;
   white-space:nowrap;
-  min-width:180px;
+  width:100%;
 }
 
 .btn-primary{
   background:linear-gradient(135deg,#2563eb,#1d4ed8);
   color:#fff;
-}
-
-/* bouton contact sur 2 lignes */
-.btn-contact{
-  flex-direction:column;
-  line-height:1.2;
-}
-
-.btn-contact span{
-  display:block;
-}
-
-.btn-contact .btn-sub{
-  font-size:12px;
-  opacity:.85;
 }
 
 .btn-ghost{
@@ -189,6 +178,7 @@ body{
   color:#fff;
 }
 
+/* FOOTER */
 .footer{
   display:flex;
   justify-content:space-between;
@@ -196,7 +186,7 @@ body{
   color:#6b7280;
 }
 
-/* LOGO BAS */
+/* LOGO */
 .logo-footer{
   width:100%;
   max-width:420px;
@@ -215,12 +205,10 @@ body{
 
 <body>
 
-<!-- PHOTO -->
 <div class="photo-float">
   <img src="Photo.jpg" alt="Berenkan Cinki">
 </div>
 
-<!-- CARD -->
 <div class="card">
 
   <div class="icard-badge">
@@ -244,16 +232,12 @@ body{
 
   <div class="contact-item">
     <div class="contact-label">TÉL</div>
-    <div class="contact-value">
-      <a href="tel:+33651540299">+33 6 51 54 02 99</a>
-    </div>
+    <div class="contact-value"><a href="tel:+33651540299">+33 6 51 54 02 99</a></div>
   </div>
 
   <div class="contact-item">
     <div class="contact-label">EMAIL</div>
-    <div class="contact-value">
-      <a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a>
-    </div>
+    <div class="contact-value"><a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a></div>
   </div>
 
   <div class="contact-item">
@@ -275,9 +259,8 @@ body{
   </div>
 
   <div class="buttons">
-    <a class="btn btn-primary btn-contact" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
-      <span>Ajouter à mes</span>
-      <span class="btn-sub">contacts</span>
+    <a class="btn btn-primary" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
+      Ajouter à mes contacts
     </a>
     <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">
       Envoyer un email
@@ -291,11 +274,9 @@ body{
 
 </div>
 
-<!-- LOGO BAS -->
 <div class="logo-footer">
   <img src="5.png" alt="Logo iCard">
 </div>
 
 </body>
 </html>
-
