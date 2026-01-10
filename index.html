@@ -28,19 +28,18 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  padding:40px 20px 20px;
+  padding:40px 20px 40px;
 }
 
-/* PHOTO GÉANTE */
+/* PHOTO plus petite */
 .photo-float{
-  width:260px;
-  height:260px;
-  border-radius:40px;
+  width:130px;
+  height:130px;
+  border-radius:26px;
   overflow:hidden;
-  margin-top:-40px;
-  margin-bottom:-80px;
+  margin-bottom:-40px;
   border:2px solid rgba(148,163,184,.45);
-  box-shadow:0 30px 70px rgba(0,0,0,.6);
+  box-shadow:0 20px 45px rgba(0,0,0,.55);
   background:#000;
   z-index:5;
 }
@@ -57,21 +56,10 @@ body{
   max-width:420px;
   background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
   border-radius:24px;
-  padding:90px 22px 20px;
+  padding:70px 22px 24px;
   box-shadow:0 22px 60px rgba(15,23,42,.9),0 0 0 1px rgba(148,163,184,.18);
   position:relative;
-}
-
-/* LOGO ANGLE HAUT DROIT */
-.card-logo{
-  position:absolute;
-  top:14px;
-  right:14px;
-  width:80px;
-  height:auto;
-  object-fit:contain;
-  filter:drop-shadow(0 8px 16px rgba(0,0,0,.45));
-  z-index:10;
+  margin-bottom:40px;
 }
 
 .icard-badge{
@@ -189,21 +177,42 @@ body{
   font-size:11px;
   color:#6b7280;
 }
+
+/* LOGO BAS ANIMÉ */
+.logo-footer{
+  width:100%;
+  max-width:420px;
+  margin-top:10px;
+}
+
+.logo-footer img{
+  width:100%;
+  height:120px;
+  object-fit:contain;
+  display:block;
+  animation:logoFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 18px 30px rgba(0,0,0,.6));
+}
+
+/* Animation douce */
+@keyframes logoFloat{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+  100%{transform:translateY(0);}
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- PHOTO GÉANTE -->
+<!-- PHOTO -->
 <div class="photo-float">
   <img src="Photo.jpg" alt="Berenkan Cinki">
 </div>
 
 <!-- CARD -->
 <div class="card">
-
-  <!-- LOGO ANGLE -->
-  <img src="5.png" alt="Logo iCard" class="card-logo">
 
   <div class="icard-badge">
     <span class="icard-dot"></span>
@@ -220,7 +229,7 @@ body{
   <div class="divider"></div>
 
   <p class="info">
-    Retrouvez toutes mes coordonnées professionnelles et ajoutez-moi en contact instantanément.
+    Retrouvez toutes mes coordonnées professionnelles et ajoutez-moi en contact en un seul geste.
   </p>
 
   <div class="contact-item">
@@ -259,6 +268,11 @@ body{
     <span>Propulsé par iCard</span>
   </div>
 
+</div>
+
+<!-- LOGO BAS ANIMÉ -->
+<div class="logo-footer">
+  <img src="5.png" alt="Logo iCard">
 </div>
 
 </body>
