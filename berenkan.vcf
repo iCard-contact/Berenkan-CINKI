@@ -3,8 +3,8 @@ VERSION:3.0
 N:CINKI;Berenkan;;;
 FN:Berenkan CINKI
 ORG:iCard
-TITLE:CdT Demathieu Bard
+TITLE:Ingénieur Travaux Demathieu Bard
 TEL;TYPE=CELL,VOICE:+33651540299
 EMAIL;TYPE=INTERNET,WORK:berenkan.cinki@demathieu-bard.fr
-URL:https://berenkan.github.io/I-Card-/
+URL:https://icard-contact.github.io/Berenkan-CINKI/
 END:VCARD
