@@ -7,11 +7,20 @@
 
 <style>
 :root{
+  /* Couleurs de base */
   --accent:#2563eb;
   --accent-soft:rgba(37,99,235,.2);
+
   --text:#f9fafb;
   --text-muted:#9ca3af;
   --border:rgba(148,163,184,.35);
+
+  /* Couleurs “style entreprise” (à ajuster si besoin)
+     Comme je n’ai pas la couleur exacte du logo, je prends une palette bleu corporate.
+     Si tu me donnes le HEX exact, je te le fixe au pixel. */
+  --dbc-blue-1:#0b2a57;
+  --dbc-blue-2:#0a1a36;
+  --dbc-blue-3:#07101f;
 }
 
 *{
@@ -23,7 +32,18 @@
 
 body{
   min-height:100vh;
-  background:radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
+  /* Fond avec “trame” + dégradé corporate */
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.06) 0, rgba(255,255,255,0) 55%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,.035) 0px,
+      rgba(255,255,255,.035) 2px,
+      rgba(255,255,255,0) 2px,
+      rgba(255,255,255,0) 10px
+    ),
+    radial-gradient(circle at 20% 0%, rgba(37,99,235,.18), transparent 55%),
+    linear-gradient(180deg, var(--dbc-blue-1) 0%, var(--dbc-blue-2) 55%, var(--dbc-blue-3) 100%);
   color:var(--text);
   display:flex;
   flex-direction:column;
@@ -54,10 +74,10 @@ body{
 .card{
   width:100%;
   max-width:420px;
-  background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
+  background:linear-gradient(145deg,rgba(15,23,42,.96),rgba(10,18,34,.93));
   border-radius:24px;
   padding:100px 22px 24px;
-  box-shadow:0 22px 60px rgba(15,23,42,.9),0 0 0 1px rgba(148,163,184,.18);
+  box-shadow:0 22px 60px rgba(0,0,0,.55),0 0 0 1px rgba(148,163,184,.18);
   position:relative;
   margin-bottom:40px;
 }
@@ -86,6 +106,39 @@ body{
   box-shadow:0 0 12px rgba(34,197,94,.9);
 }
 
+/* --- Bloc logo DBC + texte aligné --- */
+.identity-row{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:10px;
+}
+
+.dbc-logo{
+  width:52px;
+  height:52px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(148,163,184,.28);
+  padding:8px;
+  flex:0 0 auto;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+.dbc-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+/* Colonne à droite : nom + poste + chip alignés */
+.identity-content{
+  flex:1 1 auto;
+  min-width:0;
+}
+
 .name-block h1{
   font-size:24px;
   font-weight:600;
@@ -95,19 +148,22 @@ body{
 .name-block p{
   font-size:14px;
   color:var(--text-muted);
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 
 .chip{
   display:inline-block;
   font-size:11px;
-  padding:5px 12px;
+  padding:6px 12px;
   border-radius:999px;
-  background:var(--accent-soft);
-  border:1px solid rgba(37,99,235,.5);
+  background:rgba(37,99,235,.18);
+  border:1px solid rgba(37,99,235,.45);
   color:#bfdbfe;
   text-decoration:none;
-  margin-bottom:16px;
+}
+
+.chip:hover{
+  background:rgba(37,99,235,.25);
 }
 
 .divider{
@@ -143,6 +199,10 @@ body{
   text-decoration:none;
 }
 
+.contact-value a:hover{
+  text-decoration:underline;
+}
+
 /* BUTTONS */
 .buttons{
   display:grid;
@@ -165,6 +225,7 @@ body{
   text-align:center;
   white-space:nowrap;
   width:100%;
+  min-width:0; /* évite débordements */
 }
 
 .btn-primary{
@@ -186,7 +247,7 @@ body{
   color:#6b7280;
 }
 
-/* LOGO */
+/* LOGO iCard footer */
 .logo-footer{
   width:100%;
   max-width:420px;
@@ -199,6 +260,12 @@ body{
   object-fit:contain;
   display:block;
   filter:drop-shadow(0 18px 30px rgba(0,0,0,.6));
+}
+
+/* Responsive */
+@media (max-width:420px){
+  .dbc-logo{width:46px;height:46px;border-radius:12px}
+  .name-block h1{font-size:22px}
 }
 </style>
 </head>
@@ -216,12 +283,22 @@ body{
     <span>iCard • Carte de visite</span>
   </div>
 
-  <div class="name-block">
-    <h1>Berenkan Cinki</h1>
-    <p>Ingénieur Travaux chez Demathieu Bard Construction</p>
-  </div>
+  <!-- DBC logo à gauche + contenu aligné à droite -->
+  <div class="identity-row">
+    <div class="dbc-logo">
+      <!-- IMPORTANT : le fichier s’appelle exactement "LOGO DBC.png" -->
+      <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction">
+    </div>
 
-  <a class="chip" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">Tap to save</a>
+    <div class="identity-content">
+      <div class="name-block">
+        <h1>Berenkan Cinki</h1>
+        <p>Ingénieur Travaux chez Demathieu Bard Construction</p>
+      </div>
+
+      <a class="chip" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">Tap to save</a>
+    </div>
+  </div>
 
   <div class="divider"></div>
 
@@ -243,7 +320,7 @@ body{
   <div class="contact-item">
     <div class="contact-label">LINKEDIN</div>
     <div class="contact-value">
-      <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank">
+      <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank" rel="noreferrer">
         Berenkan CINKI
       </a>
     </div>
@@ -252,7 +329,7 @@ body{
   <div class="contact-item">
     <div class="contact-label">SITE</div>
     <div class="contact-value">
-      <a href="https://icard-contact.github.io/Berenkan-CINKI/" target="_blank">
+      <a href="https://icard-contact.github.io/Berenkan-CINKI/" target="_blank" rel="noreferrer">
         https://icard-contact.github.io/Berenkan-CINKI/
       </a>
     </div>
@@ -280,4 +357,3 @@ body{
 
 </body>
 </html>
-
