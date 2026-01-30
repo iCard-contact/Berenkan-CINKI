@@ -13,8 +13,8 @@
   --text-muted:#9ca3af;
   --border:rgba(148,163,184,.35);
 
-  /* Couleur de bordure photo (et donc rectangle + bordure card) */
-  --photo-border: rgba(148,163,184,.45);
+  /* Bordure demandée : blanc 85% */
+  --white-85: rgba(255,255,255,.85);
 }
 
 *{
@@ -41,7 +41,7 @@ body{
   border-radius:32px;
   overflow:hidden;
   margin-bottom:-60px;
-  border:2px solid var(--photo-border);
+  border:2px solid var(--white-85); /* ✅ bordure photo blanc 85% */
   box-shadow:0 24px 55px rgba(0,0,0,.6);
   background:#000;
   z-index:5;
@@ -65,15 +65,14 @@ body{
   position:relative;
   margin-bottom:40px;
 
-  /* Bordure = même couleur que la bordure de la photo */
-  border:2px solid var(--photo-border);
+  /* ✅ bordure card blanc 85% */
+  border:2px solid var(--white-85);
 
   /* Pour garder la barre dans les arrondis */
   overflow:hidden;
 }
 
-/* Petit rectangle (barre) tout en haut = même couleur que bordure photo
-   Visible uniquement sur les côtés car la photo est au-dessus (z-index plus haut) */
+/* ✅ Petit rectangle en haut : même blanc 85% */
 .card::before{
   content:"";
   position:absolute;
@@ -81,7 +80,7 @@ body{
   left:0;
   right:0;
   height:10px;
-  background:var(--photo-border);
+  background:var(--white-85);
   z-index:0;
 }
 
