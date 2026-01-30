@@ -13,10 +13,13 @@
   --text-muted:#9ca3af;
   --border:rgba(148,163,184,.35);
 
-  /* Fond demandé : orange foncé (haut) -> bleu foncé (bas) */
-  --bg-top:#C24E08;     /* orange foncé */
-  --bg-mid:#EC6709;     /* orange plus “vif” */
-  --bg-bottom:#050814;  /* bleu très foncé */
+  /* RAL 2009 (approximation en HEX)
+     IMPORTANT : le RAL n'a pas une conversion unique écran -> on utilise une approximation.
+     Si tu as le code HEX exact de ton imprimeur/charte, je le remplace. */
+  --ral2009:#D84B1E;
+
+  /* Bleu foncé bas */
+  --bg-bottom:#050814;
 }
 
 *{
@@ -29,10 +32,10 @@
 body{
   min-height:100vh;
 
-  /* Fond simple en dégradé (sans rayures) */
+  /* Dégradé simple : RAL 2009 (haut) -> bleu foncé (bas) */
   background:
-    radial-gradient(circle at top, rgba(255,255,255,.16) 0, rgba(255,255,255,0) 55%),
-    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 35%, var(--bg-bottom) 100%);
+    radial-gradient(circle at top, rgba(255,255,255,.14) 0, rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, var(--ral2009) 0%, #EC6709 28%, var(--bg-bottom) 100%);
 
   color:var(--text);
   display:flex;
@@ -105,30 +108,25 @@ body{
   margin-bottom:10px;
 }
 
-/*
-  LOGO DBC :
-  - On réduit un peu le zoom + on augmente légèrement la hauteur
-    pour voir le texte + le logo orange en entier.
-*/
+/* LOGO DBC : tout visible */
 .dbc-logo{
   width:145px;
-  height:86px;          /* + haut pour ne pas couper */
+  height:86px;
   padding:0;
   background:transparent;
   border:0;
   border-radius:0;
   box-shadow:none;
   flex:0 0 auto;
-  overflow:hidden;      /* garde un crop propre */
+  overflow:hidden;
 }
 
 .dbc-logo img{
   width:100%;
   height:100%;
   display:block;
-  object-fit:contain;       /* montre tout le logo */
+  object-fit:contain;
   object-position:center;
-  transform:none;           /* on enlève le zoom pour éviter de couper */
 }
 
 /* Colonne à droite : nom + poste + chip alignés */
