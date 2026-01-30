@@ -12,6 +12,9 @@
   --text:#f9fafb;
   --text-muted:#9ca3af;
   --border:rgba(148,163,184,.35);
+
+  /* Orange demandé */
+  --dbc-orange:#EC6709;
 }
 
 *{
@@ -23,7 +26,6 @@
 
 body{
   min-height:100vh;
-  /* Même couleur de fond que ton code Emre (inchangée) */
   background:radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
   color:var(--text);
   display:flex;
@@ -59,9 +61,33 @@ body{
   background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
   border-radius:24px;
   padding:100px 22px 24px;
-  box-shadow:0 22px 60px rgba(15,23,42,.9),0 0 0 1px rgba(148,163,184,.18);
+  box-shadow:0 22px 60px rgba(15,23,42,.9);
   position:relative;
   margin-bottom:40px;
+
+  /* Bordure orange autour de toute la zone d'infos */
+  border:2px solid var(--dbc-orange);
+
+  /* Nécessaire pour que la barre orange reste dans les arrondis */
+  overflow:hidden;
+}
+
+/* Petit rectangle orange tout en haut du cadre (derrière la photo, donc visible seulement sur les côtés) */
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:10px;               /* “très petit” */
+  background:var(--dbc-orange);
+  z-index:0;                 /* derrière le contenu */
+}
+
+/* Assure que le contenu de la card est au-dessus de la barre */
+.card > *{
+  position:relative;
+  z-index:1;
 }
 
 /* TEXT */
@@ -108,11 +134,11 @@ body{
   width:100%;
   height:100%;
   display:block;
-  object-fit:contain;      /* on voit tout (texte + logo orange) */
+  object-fit:contain;
   object-position:left center;
 }
 
-/* Colonne à droite (décalée grâce au logo à gauche) */
+/* Colonne à droite */
 .identity-content{
   flex:1 1 auto;
   min-width:0;
@@ -140,6 +166,10 @@ body{
   color:#bfdbfe;
   text-decoration:none;
   margin-bottom:16px;
+}
+
+.chip:hover{
+  background:rgba(37,99,235,.28);
 }
 
 .divider{
@@ -258,10 +288,8 @@ body{
     <span>iCard • Carte de visite</span>
   </div>
 
-  <!-- Logo DBC à gauche + contenu aligné à droite -->
   <div class="identity-row">
     <div class="dbc-logo">
-      <!-- Si ton fichier s’appelle exactement "LOGO DBC.png" -->
       <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction">
     </div>
 
