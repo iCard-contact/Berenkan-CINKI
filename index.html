@@ -14,7 +14,7 @@
   --border:rgba(148,163,184,.35);
 
   /* Couleur demandée */
-  --ral:#F5822E;
+  --bg-main:#EC6709;
 }
 
 *{
@@ -26,17 +26,12 @@
 
 body{
   min-height:100vh;
-  /* Fond basé sur le RAL demandé + légère trame */
+
+  /* Fond simple en dégradé (sans rayures) */
   background:
     radial-gradient(circle at top, rgba(255,255,255,.18) 0, rgba(255,255,255,0) 55%),
-    repeating-linear-gradient(
-      135deg,
-      rgba(255,255,255,.08) 0px,
-      rgba(255,255,255,.08) 2px,
-      rgba(255,255,255,0) 2px,
-      rgba(255,255,255,0) 10px
-    ),
-    linear-gradient(180deg, #ff9a54 0%, var(--ral) 45%, #c95d14 100%);
+    linear-gradient(180deg, #ff9a54 0%, var(--bg-main) 45%, #b84a05 100%);
+
   color:var(--text);
   display:flex;
   flex-direction:column;
@@ -61,6 +56,8 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
+  /* Option utile si ta photo est mal cadrée : tu peux bouger le focus */
+  object-position: 50% 20%;
 }
 
 /* CARD */
@@ -107,31 +104,39 @@ body{
   margin-bottom:10px;
 }
 
-/* LOGO DBC x2,5 (ancien 52px -> 130px) + SANS ENCADREMENT */
+/*
+  LOGO DBC :
+  - "aggrandi encore un peu" : on passe de 130px à 150px
+  - "rogner le vide" : en HTML/CSS on ne peut pas supprimer le vide DANS l'image.
+    Ce qu’on peut faire : zoomer + crop via object-fit + object-position dans un cadre.
+*/
 .dbc-logo{
-  width:130px;
-  height:130px;
+  width:150px;
+  height:72px;          /* hauteur plus faible pour couper le “vide” vertical */
   padding:0;
   background:transparent;
   border:0;
   border-radius:0;
   box-shadow:none;
   flex:0 0 auto;
-  overflow:visible;
+  overflow:hidden;      /* active le crop */
 }
 
 .dbc-logo img{
   width:100%;
   height:100%;
-  object-fit:contain;
   display:block;
+  object-fit:cover;     /* crop le vide */
+  object-position:center; /* ajuste si besoin */
+  transform:scale(1.28);   /* zoom pour réduire les marges blanches internes */
+  transform-origin:center;
 }
 
 /* Colonne à droite : nom + poste + chip alignés */
 .identity-content{
   flex:1 1 auto;
   min-width:0;
-  padding-top:6px; /* léger alignement vertical visuel */
+  padding-top:4px;
 }
 
 .name-block h1{
@@ -259,7 +264,7 @@ body{
 
 /* Responsive */
 @media (max-width:420px){
-  .dbc-logo{width:110px;height:110px}
+  .dbc-logo{width:140px;height:66px}
   .name-block h1{font-size:22px}
 }
 </style>
@@ -278,10 +283,9 @@ body{
     <span>iCard • Carte de visite</span>
   </div>
 
-  <!-- DBC logo à gauche + contenu aligné à droite -->
   <div class="identity-row">
     <div class="dbc-logo">
-      <!-- Si ton fichier s’appelle exactement "LOGO DBC.png" (avec espace) -->
+      <!-- Fichier avec espace => encodage %20 -->
       <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction">
     </div>
 
@@ -324,8 +328,8 @@ body{
   <div class="contact-item">
     <div class="contact-label">SITE</div>
     <div class="contact-value">
-      <a href="https://icard-contact.github.io/Berenkan-CINKI/" target="_blank" rel="noreferrer">
-        https://icard-contact.github.io/Berenkan-CINKI/
+      <a href="https://icardgroup.fr" target="_blank" rel="noreferrer">
+        https://icardgroup.fr
       </a>
     </div>
   </div>
