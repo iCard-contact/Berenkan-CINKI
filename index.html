@@ -13,8 +13,8 @@
   --text-muted:#9ca3af;
   --border:rgba(148,163,184,.35);
 
-  /* Orange demandé */
-  --dbc-orange:#EC6709;
+  /* Couleur de bordure photo (et donc rectangle + bordure card) */
+  --photo-border: rgba(148,163,184,.45);
 }
 
 *{
@@ -41,7 +41,7 @@ body{
   border-radius:32px;
   overflow:hidden;
   margin-bottom:-60px;
-  border:2px solid rgba(148,163,184,.45);
+  border:2px solid var(--photo-border);
   box-shadow:0 24px 55px rgba(0,0,0,.6);
   background:#000;
   z-index:5;
@@ -65,26 +65,27 @@ body{
   position:relative;
   margin-bottom:40px;
 
-  /* Bordure orange autour de toute la zone d'infos */
-  border:2px solid var(--dbc-orange);
+  /* Bordure = même couleur que la bordure de la photo */
+  border:2px solid var(--photo-border);
 
-  /* Nécessaire pour que la barre orange reste dans les arrondis */
+  /* Pour garder la barre dans les arrondis */
   overflow:hidden;
 }
 
-/* Petit rectangle orange tout en haut du cadre (derrière la photo, donc visible seulement sur les côtés) */
+/* Petit rectangle (barre) tout en haut = même couleur que bordure photo
+   Visible uniquement sur les côtés car la photo est au-dessus (z-index plus haut) */
 .card::before{
   content:"";
   position:absolute;
   top:0;
   left:0;
   right:0;
-  height:10px;               /* “très petit” */
-  background:var(--dbc-orange);
-  z-index:0;                 /* derrière le contenu */
+  height:10px;
+  background:var(--photo-border);
+  z-index:0;
 }
 
-/* Assure que le contenu de la card est au-dessus de la barre */
+/* Assure que le contenu est au-dessus de la barre */
 .card > *{
   position:relative;
   z-index:1;
