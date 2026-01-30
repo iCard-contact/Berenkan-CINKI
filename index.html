@@ -13,8 +13,10 @@
   --text-muted:#9ca3af;
   --border:rgba(148,163,184,.35);
 
-  /* Couleur demandée */
-  --bg-main:#EC6709;
+  /* Fond demandé : orange foncé (haut) -> bleu foncé (bas) */
+  --bg-top:#C24E08;     /* orange foncé */
+  --bg-mid:#EC6709;     /* orange plus “vif” */
+  --bg-bottom:#050814;  /* bleu très foncé */
 }
 
 *{
@@ -29,8 +31,8 @@ body{
 
   /* Fond simple en dégradé (sans rayures) */
   background:
-    radial-gradient(circle at top, rgba(255,255,255,.18) 0, rgba(255,255,255,0) 55%),
-    linear-gradient(180deg, #ff9a54 0%, var(--bg-main) 45%, #b84a05 100%);
+    radial-gradient(circle at top, rgba(255,255,255,.16) 0, rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 35%, var(--bg-bottom) 100%);
 
   color:var(--text);
   display:flex;
@@ -56,8 +58,7 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
-  /* Option utile si ta photo est mal cadrée : tu peux bouger le focus */
-  object-position: 50% 20%;
+  object-position:50% 20%;
 }
 
 /* CARD */
@@ -106,30 +107,28 @@ body{
 
 /*
   LOGO DBC :
-  - "aggrandi encore un peu" : on passe de 130px à 150px
-  - "rogner le vide" : en HTML/CSS on ne peut pas supprimer le vide DANS l'image.
-    Ce qu’on peut faire : zoomer + crop via object-fit + object-position dans un cadre.
+  - On réduit un peu le zoom + on augmente légèrement la hauteur
+    pour voir le texte + le logo orange en entier.
 */
 .dbc-logo{
-  width:150px;
-  height:72px;          /* hauteur plus faible pour couper le “vide” vertical */
+  width:145px;
+  height:86px;          /* + haut pour ne pas couper */
   padding:0;
   background:transparent;
   border:0;
   border-radius:0;
   box-shadow:none;
   flex:0 0 auto;
-  overflow:hidden;      /* active le crop */
+  overflow:hidden;      /* garde un crop propre */
 }
 
 .dbc-logo img{
   width:100%;
   height:100%;
   display:block;
-  object-fit:cover;     /* crop le vide */
-  object-position:center; /* ajuste si besoin */
-  transform:scale(1.28);   /* zoom pour réduire les marges blanches internes */
-  transform-origin:center;
+  object-fit:contain;       /* montre tout le logo */
+  object-position:center;
+  transform:none;           /* on enlève le zoom pour éviter de couper */
 }
 
 /* Colonne à droite : nom + poste + chip alignés */
@@ -264,7 +263,7 @@ body{
 
 /* Responsive */
 @media (max-width:420px){
-  .dbc-logo{width:140px;height:66px}
+  .dbc-logo{width:132px;height:80px}
   .name-block h1{font-size:22px}
 }
 </style>
@@ -285,7 +284,6 @@ body{
 
   <div class="identity-row">
     <div class="dbc-logo">
-      <!-- Fichier avec espace => encodage %20 -->
       <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction">
     </div>
 
