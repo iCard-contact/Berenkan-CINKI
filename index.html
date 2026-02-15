@@ -1,366 +1,417 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>iCard - Berenkan Cinki</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 :root{
-  --accent:#2563eb;
-  --accent-soft:rgba(37,99,235,.2);
+  --bg0:#050814;
+  --bg1:#070b18;
   --text:#f9fafb;
-  --text-muted:#9ca3af;
-  --border:rgba(148,163,184,.35);
+  --muted:#a6b0c3;
+  --muted2:#7c879b;
+  --stroke:rgba(148,163,184,.18);
+  --stroke2:rgba(255,255,255,.12);
+  --white85:rgba(255,255,255,.85);
 
-  /* Bordure demandée : blanc 85% */
-  --white-85: rgba(255,255,255,.85);
+  --card:#0b1224;
+  --card2:#0a1020;
+  --shadow:rgba(0,0,0,.55);
+
+  --btn:#111a33;
+  --btnStroke:rgba(255,255,255,.14);
+
+  --linkedin:#0a66c2;
+
+  --radius:26px;
+  --max:420px;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;}
 body{
   min-height:100vh;
-  background:radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
-  color:var(--text);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:40px 20px 40px;
-}
-
-/* PHOTO */
-.photo-float{
-  width:219px;
-  height:219px;
-  border-radius:32px;
-  overflow:hidden;
-  margin-bottom:-60px;
-  border:2px solid var(--white-85); /* ✅ bordure photo blanc 85% */
-  box-shadow:0 24px 55px rgba(0,0,0,.6);
-  background:#000;
-  z-index:5;
-}
-
-.photo-float img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:top center;
-}
-
-/* CARD */
-.card{
-  width:100%;
-  max-width:420px;
-  background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
-  border-radius:24px;
-  padding:100px 22px 24px;
-  box-shadow:0 22px 60px rgba(15,23,42,.9);
-  position:relative;
-  margin-bottom:40px;
-
-  /* ✅ bordure card blanc 85% */
-  border:2px solid var(--white-85);
-
-  /* Pour garder la barre dans les arrondis */
-  overflow:hidden;
-}
-
-/* ✅ Petit rectangle en haut : même blanc 85% */
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:10px;
-  background:var(--white-85);
-  z-index:0;
-}
-
-/* Assure que le contenu est au-dessus de la barre */
-.card > *{
-  position:relative;
-  z-index:1;
-}
-
-/* TEXT */
-.icard-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--text-muted);
-  padding:4px 10px;
-  border-radius:999px;
-  background:rgba(15,23,42,.85);
-  border:1px solid var(--border);
-  margin-bottom:14px;
-}
-
-.icard-dot{
-  width:9px;
-  height:9px;
-  border-radius:999px;
-  background:radial-gradient(circle at 30% 30%, #e5e7eb, #22c55e);
-  box-shadow:0 0 12px rgba(34,197,94,.9);
-}
-
-/* --------- DBC LOGO + nom/poste/chip alignés --------- */
-.identity-row{
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-  margin-bottom:4px;
-}
-
-/* Logo DBC sans encadrement */
-.dbc-logo{
-  width:120px;
-  height:72px;
-  flex:0 0 auto;
-  overflow:hidden;
-}
-
-.dbc-logo img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:contain;
-  object-position:left center;
-}
-
-/* Colonne à droite */
-.identity-content{
-  flex:1 1 auto;
-  min-width:0;
-}
-
-.name-block h1{
-  font-size:24px;
-  font-weight:600;
-  margin-bottom:6px;
-}
-
-.name-block p{
-  font-size:14px;
-  color:var(--text-muted);
-  margin-bottom:14px;
-}
-
-.chip{
-  display:inline-block;
-  font-size:11px;
-  padding:5px 12px;
-  border-radius:999px;
-  background:var(--accent-soft);
-  border:1px solid rgba(37,99,235,.5);
-  color:#bfdbfe;
-  text-decoration:none;
-  margin-bottom:16px;
-}
-
-.chip:hover{
-  background:rgba(37,99,235,.28);
-}
-
-.divider{
-  border-top:1px solid var(--border);
-  margin:12px 0 14px;
-}
-
-.info{
-  font-size:14px;
-  color:var(--text-muted);
-  margin-bottom:16px;
-  line-height:1.5;
-}
-
-/* CONTACT */
-.contact-item{
-  display:flex;
-  gap:12px;
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-.contact-label{
-  min-width:90px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  color:#6b7280;
-}
-
-.contact-value a{
-  color:#d1d5db;
-  text-decoration:none;
-}
-
-.contact-value a:hover{
-  text-decoration:underline;
-}
-
-/* BUTTONS */
-.buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin:18px 0 10px;
-}
-
-.btn{
-  border-radius:999px;
-  padding:10px 12px;
-  font-size:13px;
-  font-weight:500;
-  border:0;
-  cursor:pointer;
-  text-decoration:none;
   display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  white-space:nowrap;
+  padding:22px 14px 40px;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(37,99,235,.25), transparent 55%),
+    radial-gradient(900px 500px at 10% 20%, rgba(99,102,241,.18), transparent 55%),
+    radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
+}
+
+.wrap{width:100%;max-width:var(--max);}
+
+.phone-shell{
   width:100%;
+  border-radius:34px;
+  padding:10px;
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  box-shadow:0 30px 70px var(--shadow);
 }
 
-.btn-primary{
-  background:linear-gradient(135deg,#2563eb,#1d4ed8);
-  color:#fff;
+.card{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+  border:2px solid var(--white85);
+  background:linear-gradient(145deg, rgba(15,23,42,.98), rgba(15,23,42,.92));
+  box-shadow:0 22px 60px rgba(0,0,0,.55);
 }
 
-.btn-ghost{
-  background:rgba(15,23,42,.7);
-  border:1px solid rgba(148,163,184,.6);
-  color:#fff;
+/* petite barre blanche en haut, comme sur ton design */
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:10px;
+  background:var(--white85);
+  z-index:3;
 }
 
-/* FOOTER */
+.hero{
+  position:relative;
+  height:340px;
+  background:#0b1224;
+  overflow:hidden;
+}
+
+/* Photo plein cadre */
+.hero img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 18%;
+  transform:scale(1.02);
+}
+
+/* Dégradés/voile comme la capture */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(700px 260px at 70% 30%, rgba(255,255,255,.10), transparent 55%),
+    linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.72) 100%);
+}
+
+.hero-content{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:16px;
+  z-index:2;
+}
+
+.name{
+  font-size:30px;
+  line-height:1.05;
+  font-weight:650;
+  letter-spacing:.2px;
+  text-shadow:0 14px 34px rgba(0,0,0,.65);
+}
+.role{
+  margin-top:8px;
+  font-size:13px;
+  color:rgba(255,255,255,.80);
+  text-shadow:0 12px 30px rgba(0,0,0,.55);
+}
+
+/* Ligne entreprise : logo + nom */
+.company-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+}
+.company-logo{
+  width:30px;height:30px;
+  border-radius:10px;
+  overflow:hidden;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);
+  display:grid;
+  place-items:center;
+}
+.company-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:4px;
+}
+.company-name{
+  font-size:13px;
+  font-weight:600;
+  color:rgba(255,255,255,.86);
+}
+
+/* Rangée d’icônes (tél, mail, sms, whatsapp) */
+.actions{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:-24px;
+  z-index:4;
+  display:flex;
+  gap:10px;
+  justify-content:flex-start;
+}
+.action{
+  width:44px;height:44px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:rgba(12,18,36,.85);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 10px 26px rgba(0,0,0,.35);
+  text-decoration:none;
+  transition:transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.action:hover{
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.22);
+  background:rgba(12,18,36,.92);
+}
+.action svg{width:20px;height:20px;fill:rgba(255,255,255,.92);}
+
+/* zone contenu sous la photo */
+.body{
+  padding:44px 16px 16px; /* 44px pour laisser la place aux icônes qui “flottent” */
+}
+
+.link-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  width:100%;
+  border-radius:16px;
+  padding:12px 12px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 10px 26px rgba(0,0,0,.25);
+  text-decoration:none;
+  color:var(--text);
+  transition:transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.link-card:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.075);
+  border-color:rgba(255,255,255,.20);
+}
+.link-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.link-ico{
+  width:38px;height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:rgba(10,102,194,.16);
+  border:1px solid rgba(10,102,194,.35);
+}
+.link-ico svg{width:20px;height:20px;fill:rgba(255,255,255,.92);}
+.link-text{min-width:0;}
+.link-title{
+  font-weight:650;
+  font-size:14px;
+  line-height:1.1;
+}
+.link-sub{
+  font-size:11px;
+  color:rgba(255,255,255,.72);
+  margin-top:3px;
+}
+.chev{
+  width:22px;height:22px;
+  opacity:.85;
+  flex:0 0 auto;
+}
+
+.meta{
+  margin-top:14px;
+  padding:12px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.10);
+}
+.meta p{
+  font-size:13px;
+  color:rgba(255,255,255,.78);
+  line-height:1.45;
+}
+
+/* Boutons bas (comme “Add to contact”) */
+.bottom-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:14px;
+  gap:10px;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border-radius:999px;
+  padding:10px 12px;
+  background:rgba(12,18,36,.75);
+  border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.92);
+  text-decoration:none;
+  box-shadow:0 12px 28px rgba(0,0,0,.25);
+}
+.pill:hover{border-color:rgba(255,255,255,.22);}
+.pill span{font-size:13px;font-weight:600;}
+.pill svg{width:18px;height:18px;fill:rgba(255,255,255,.92);}
+
+.fab{
+  width:46px;height:46px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 14px 30px rgba(0,0,0,.35);
+  transition:transform .12s ease;
+}
+.fab:hover{transform:translateY(-1px);}
+.fab svg{width:22px;height:22px;fill:#0b1224;}
+
 .footer{
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  padding:14px 16px 16px;
+  color:rgba(255,255,255,.45);
   font-size:11px;
-  color:#6b7280;
-}
-
-/* LOGO iCard */
-.logo-footer{
-  width:100%;
-  max-width:420px;
-  margin-top:10px;
-}
-
-.logo-footer img{
-  width:100%;
-  height:120px;
-  object-fit:contain;
-  display:block;
-  filter:drop-shadow(0 18px 30px rgba(0,0,0,.6));
+  border-top:1px solid rgba(255,255,255,.10);
+  margin-top:12px;
 }
 
 /* Responsive */
 @media (max-width:420px){
-  .dbc-logo{width:110px;height:66px}
-  .name-block h1{font-size:22px}
+  .hero{height:320px;}
+  .name{font-size:28px;}
 }
 </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <div class="phone-shell">
+      <div class="card">
 
-<div class="photo-float">
-  <img src="Photo.jpg" alt="Berenkan Cinki">
-</div>
+        <div class="hero">
+          <!-- Photo profil -->
+          <img src="Photo.jpg" alt="Berenkan Cinki" />
 
-<div class="card">
+          <div class="hero-content">
+            <div class="name">Berenkan Cinki</div>
+            <div class="role">Ingénieur Travaux chez Demathieu Bard Construction</div>
 
-  <div class="icard-badge">
-    <span class="icard-dot"></span>
-    <span>iCard • Carte de visite</span>
-  </div>
+            <div class="company-row" aria-label="Entreprise">
+              <div class="company-logo">
+                <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction" />
+              </div>
+              <div class="company-name">Demathieu Bard Construction</div>
+            </div>
+          </div>
 
-  <div class="identity-row">
-    <div class="dbc-logo">
-      <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction">
-    </div>
+          <!-- Icônes (téléphone / mail / sms / whatsapp) -->
+          <div class="actions" aria-label="Raccourcis">
+            <a class="action" href="tel:+33651540299" aria-label="Appeler">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+              </svg>
+            </a>
 
-    <div class="identity-content">
-      <div class="name-block">
-        <h1>Berenkan Cinki</h1>
-        <p>Ingénieur Travaux chez Demathieu Bard Construction</p>
+            <a class="action" href="mailto:berenkan.cinki@demathieu-bard.fr" aria-label="Envoyer un email">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </a>
+
+            <a class="action" href="sms:+33651540299" aria-label="Envoyer un SMS">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 2H4a2 2 0 00-2 2v14a2 2 0 002 2h14l4 4V4a2 2 0 00-2-2zm-2 12H6v-2h12v2zm0-4H6V8h12v2z"/>
+              </svg>
+            </a>
+
+            <a class="action" href="https://wa.me/33651540299" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.52 3.48A11.91 11.91 0 0012.04 0C5.5 0 .18 5.33.18 11.87c0 2.1.55 4.16 1.6 5.97L0 24l6.32-1.65a11.85 11.85 0 005.72 1.46h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.23-6.15-3.39-8.47zM12.05 21.8h-.01a9.9 9.9 0 01-5.05-1.39l-.36-.21-3.75.98 1-3.65-.24-.37a9.88 9.88 0 01-1.52-5.29C2.12 6.44 6.64 1.92 12.04 1.92c2.64 0 5.12 1.03 6.98 2.9a9.82 9.82 0 012.9 6.98c0 5.4-4.52 9.99-9.87 10z"/>
+                <path d="M17.5 14.4c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.14-.19.29-.73.94-.9 1.13-.16.19-.33.22-.62.08-.29-.14-1.21-.45-2.31-1.44-.86-.77-1.44-1.72-1.6-2.01-.17-.29-.02-.44.13-.58.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 0.98-1 2.4s1.02 2.79 1.16 2.98c.14.19 2.01 3.07 4.86 4.3.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.7-.7 1.94-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="body">
+          <!-- Uniquement LinkedIn (au lieu Facebook/Instagram) -->
+          <a class="link-card" href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank" rel="noreferrer">
+            <div class="link-left">
+              <div class="link-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 23.5h4V7.98h-4V23.5zM8 7.98h3.84v2.12h.05c.53-1.01 1.83-2.08 3.77-2.08 4.03 0 4.77 2.65 4.77 6.1v9.38h-4v-8.32c0-1.98-.04-4.52-2.75-4.52-2.75 0-3.17 2.15-3.17 4.38v8.46H8V7.98z"/>
+                </svg>
+              </div>
+              <div class="link-text">
+                <div class="link-title">LinkedIn</div>
+                <div class="link-sub">Voir le profil de Berenkan CINKI</div>
+              </div>
+            </div>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="rgba(255,255,255,.85)" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/>
+            </svg>
+          </a>
+
+          <!-- Infos profil conservées -->
+          <div class="meta">
+            <p>
+              N° client : 260110 0001<br>
+              Restons en contact pour de futures collaborations.
+            </p>
+            <p style="margin-top:10px;color:rgba(255,255,255,.70);font-size:12px;line-height:1.4">
+              Email : <a href="mailto:berenkan.cinki@demathieu-bard.fr" style="color:rgba(255,255,255,.88);text-decoration:none">berenkan.cinki@demathieu-bard.fr</a><br>
+              Tél : <a href="tel:+33651540299" style="color:rgba(255,255,255,.88);text-decoration:none">+33 6 51 54 02 99</a><br>
+              Site : <a href="https://icardgroup.fr" target="_blank" rel="noreferrer" style="color:rgba(255,255,255,.88);text-decoration:none">https://icardgroup.fr</a>
+            </p>
+          </div>
+
+          <!-- Bas : “Ajouter à mes contacts” + bouton flottant -->
+          <div class="bottom-bar">
+            <a class="pill" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-8 6v-1c0-2.21 3.58-4 8-4 .7 0 1.38.05 2.02.14-.65.64-1.02 1.53-1.02 2.46V20H7zm14-3v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2zM7 10c0 2.21 1.79 4 4 4 .75 0 1.46-.21 2.06-.57C12.4 12.48 12 11.28 12 10c0-1.28.4-2.48 1.06-3.43C12.46 6.21 11.75 6 11 6c-2.21 0-4 1.79-4 4z"/>
+              </svg>
+              <span>Ajouter à mes contacts</span>
+            </a>
+
+            <a class="fab" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf" aria-label="Ajouter aux contacts">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 11H13V5h-2v6H5v2h6v6h2v-6h6z"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="footer">
+            <span>© iCard</span>
+            <span>Propulsé par iCard</span>
+          </div>
+        </div>
+
       </div>
-
-      <a class="chip" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">Tap to save</a>
     </div>
   </div>
-
-  <div class="divider"></div>
-
-  <p class="info">
-    N° client : 260110 0001<br>
-    Restons en contact pour de futures collaborations.
-  </p>
-
-  <div class="contact-item">
-    <div class="contact-label">TÉL</div>
-    <div class="contact-value">
-      <a href="tel:+33651540299">+33 6 51 54 02 99</a>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-label">EMAIL</div>
-    <div class="contact-value">
-      <a href="mailto:berenkan.cinki@demathieu-bard.fr">berenkan.cinki@demathieu-bard.fr</a>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-label">LINKEDIN</div>
-    <div class="contact-value">
-      <a href="https://www.linkedin.com/in/berenkan-cinki-445a29241/" target="_blank" rel="noreferrer">
-        Berenkan CINKI
-      </a>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-label">SITE</div>
-    <div class="contact-value">
-      <a href="https://icardgroup.fr" target="_blank" rel="noreferrer">
-        https://icardgroup.fr
-      </a>
-    </div>
-  </div>
-
-  <div class="buttons">
-    <a class="btn btn-primary" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
-      Ajouter à mes contacts
-    </a>
-    <a class="btn btn-ghost" href="mailto:berenkan.cinki@demathieu-bard.fr">
-      Envoyer un email
-    </a>
-  </div>
-
-  <div class="footer">
-    <span>© iCard</span>
-    <span>Propulsé par iCard</span>
-  </div>
-
-</div>
-
-<div class="logo-footer">
-  <img src="5.png" alt="Logo iCard">
-</div>
-
 </body>
 </html>
