@@ -8,7 +8,6 @@
 <style>
 :root{
   --text:#f9fafb;
-  --muted:rgba(255,255,255,.75);
 
   --panel:rgba(255,255,255,.075);
   --panelStroke:rgba(255,255,255,.12);
@@ -60,10 +59,10 @@ body{
   height:56vh;
   min-height:340px;
   max-height:560px;
-  background:#111827;
+  background:#000;
 }
 
-/* photo encore plus “full bleed” */
+/* photo full bleed */
 .hero img{
   position:absolute;
   inset:-3px;
@@ -74,31 +73,38 @@ body{
   object-position:center 12%;
 }
 
-/* Dégradé lisibilité bas (modéré) */
+/* ✅ Noir profond sur toute la partie basse : pas de “trace claire” */
+.hero{
+  /* on force un fond noir sous les overlays */
+  background:#000;
+}
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
+  /* couche globale légère + couche bas très noire */
   background:
-    radial-gradient(900px 320px at 60% 20%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(900px 320px at 60% 18%, rgba(255,255,255,.06), transparent 62%),
     linear-gradient(180deg,
       rgba(0,0,0,.00) 0%,
-      rgba(0,0,0,.12) 55%,
-      rgba(0,0,0,.65) 100%);
+      rgba(0,0,0,.12) 45%,
+      rgba(0,0,0,.78) 78%,
+      rgba(0,0,0,.98) 100%);
   pointer-events:none;
+  z-index:1;
 }
 
-/* ✅ Transition photo -> bas (PLUS opaque pour une transition nette et fluide) */
+/* ✅ Transition photo -> bas : très opaque */
 .hero::before{
   content:"";
   position:absolute;
   left:0; right:0; bottom:-1px;
-  height:110px;
+  height:130px;
   background:linear-gradient(
     180deg,
     rgba(7,10,18,0.00) 0%,
-    rgba(7,10,18,0.70) 45%,
-    rgba(7,10,18,0.95) 78%,
+    rgba(7,10,18,0.78) 35%,
+    rgba(7,10,18,0.96) 70%,
     rgba(7,10,18,1.00) 100%
   );
   z-index:2;
@@ -117,16 +123,16 @@ body{
   font-size:30px;
   line-height:1.05;
   font-weight:680;
-  text-shadow:0 14px 34px rgba(0,0,0,.55);
+  text-shadow:0 14px 34px rgba(0,0,0,.65);
 }
 .role{
   margin-top:8px;
   font-size:13px;
-  color:rgba(255,255,255,.84);
-  text-shadow:0 12px 30px rgba(0,0,0,.45);
+  color:rgba(255,255,255,.86);
+  text-shadow:0 12px 30px rgba(0,0,0,.55);
 }
 
-/* Entreprise + logo DBC sur photo (✅ TRES PETIT) */
+/* Entreprise + logo DBC sur photo (✅ réduit x5) */
 .company-row{
   display:flex;
   align-items:center;
@@ -134,12 +140,12 @@ body{
   margin-top:10px;
 }
 .company-logo-mini{
-  width:10px;
-  height:10px;
-  border-radius:3px;
+  width:2px;              /* 10 / 5 = 2 */
+  height:2px;             /* 10 / 5 = 2 */
+  border-radius:1px;
   overflow:hidden;
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
   display:grid;
   place-items:center;
   flex:0 0 auto;
@@ -148,15 +154,15 @@ body{
   width:100%;
   height:100%;
   object-fit:contain;
-  padding:1px;
+  padding:0;
 }
 .company-name{
   font-size:13px;
   font-weight:650;
-  color:rgba(255,255,255,.90);
+  color:rgba(255,255,255,.92);
 }
 
-/* icônes sur photo (ordre inchangé ici) */
+/* icônes sur photo */
 .quick-actions{
   display:flex;
   gap:10px;
@@ -167,18 +173,18 @@ body{
   border-radius:999px;
   display:grid;
   place-items:center;
-  background:rgba(12,18,36,.68);
+  background:rgba(12,18,36,.70);
   border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 10px 26px rgba(0,0,0,.28);
+  box-shadow:0 10px 26px rgba(0,0,0,.34);
   text-decoration:none;
   transition:transform .12s ease, background .12s ease, border-color .12s ease;
 }
 .qbtn:hover{
   transform:translateY(-1px);
-  background:rgba(12,18,36,.80);
+  background:rgba(12,18,36,.84);
   border-color:rgba(255,255,255,.22);
 }
-.qbtn svg{width:20px;height:20px;fill:rgba(255,255,255,.92);}
+.qbtn svg{width:20px;height:20px;fill:rgba(255,255,255,.95);}
 
 .qbtn.phone{background:rgba(34,197,94,.18); border-color:rgba(34,197,94,.34);}
 .qbtn.web{background:rgba(34,211,238,.16); border-color:rgba(34,211,238,.30);}
@@ -187,18 +193,18 @@ body{
 /* BODY */
 .body{padding:16px 14px 16px;}
 
-/* ✅ Logo DBC central (AGRANDI) sous la photo */
+/* ✅ Logo DBC central agrandi x2 */
 .dbc-badge{
   display:flex;
   justify-content:center;
   margin:2px 0 12px;
 }
 .dbc-badge img{
-  height:64px; /* ↑ plus grand */
+  height:128px;  /* 64 * 2 = 128 */
   width:auto;
   object-fit:contain;
-  filter:drop-shadow(0 16px 30px rgba(0,0,0,.38));
-  opacity:.98;
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.45));
+  opacity:.99;
 }
 
 /* cartes */
@@ -247,7 +253,21 @@ body{
 .ico-linkedin{background:rgba(10,102,194,.18);border-color:rgba(10,102,194,.35);}
 .ico-phone{background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.34);}
 .ico-web{background:rgba(34,211,238,.16);border-color:rgba(34,211,238,.30);}
-.ico-mail{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);}
+
+/* ✅ Icône email remplacée par logo DBC, “full width” + dépasse un peu */
+.ico-dbc{
+  position:relative;
+  background:rgba(255,255,255,.10);
+  border-color:rgba(255,255,255,.14);
+}
+.ico-dbc img{
+  width:125%;              /* dépasse */
+  height:125%;
+  object-fit:contain;
+  display:block;
+  transform:translateX(-6%); /* léger débordement visuel */
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.20));
+}
 
 /* note client en bas */
 .client-note{
@@ -260,7 +280,7 @@ body{
 .client-note p{
   font-size:13px;
   line-height:1.45;
-  color:rgba(255,255,255,.82);
+  color:rgba(255,255,255,.84);
 }
 
 /* CTA visible */
@@ -337,7 +357,6 @@ body{
             <div class="company-name">Demathieu Bard Construction</div>
           </div>
 
-          <!-- icônes sur photo (fonctionnelles) -->
           <div class="quick-actions" aria-label="Raccourcis">
             <a class="qbtn email" href="mailto:berenkan.cinki@demathieu-bard.fr" aria-label="Envoyer un email">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -369,18 +388,16 @@ body{
       <!-- BAS -->
       <div class="body">
 
-        <!-- logo DBC central agrandi -->
+        <!-- logo DBC central x2 -->
         <div class="dbc-badge">
           <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction">
         </div>
 
-        <!-- ✅ Ordre en bas : Mail, Téléphone, LinkedIn, Site -->
+        <!-- ordre bas : Mail, Téléphone, LinkedIn, Site -->
         <a class="link-card" href="mailto:berenkan.cinki@demathieu-bard.fr">
           <div class="link-left">
-            <div class="link-ico ico-mail" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
+            <div class="link-ico ico-dbc" aria-hidden="true">
+              <img src="LOGO%20DBC.png" alt="DBC">
             </div>
             <div class="link-text">
               <div class="link-title">Email</div>
