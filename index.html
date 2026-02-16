@@ -78,11 +78,14 @@ body{
   object-position:center 12%;
 }
 
-/* ✅ Dégradé noir en bas de la photo (sans “transition” vers le bas) */
+/* ✅ Dégradé noir en bas de la photo qui descend plus bas */
 .hero::after{
   content:"";
   position:absolute;
-  inset:0;
+  left:0;
+  right:0;
+  top:0;
+  bottom:-120px;              /* ⬅️ prolonge le dégradé sous la photo */
   background:
     radial-gradient(900px 320px at 60% 18%, rgba(255,255,255,.05), transparent 62%),
     linear-gradient(180deg,
@@ -93,6 +96,9 @@ body{
   pointer-events:none;
   z-index:1;
 }
+
+/* optionnel : pour éviter tout “vide” en dessous sur certains navigateurs */
+.hero{overflow:visible;}
 
 .overlay{
   position:absolute;
