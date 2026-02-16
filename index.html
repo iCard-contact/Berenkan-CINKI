@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
@@ -57,52 +57,49 @@ body{
   }
 }
 
-/* HERO (état “original”) */
+/* HERO */
 .hero{
   position:relative;
   width:100%;
-  /* ✅ la photo s’arrête juste sous les icônes => hauteur auto via le contenu */
-  padding:16px 16px 18px; /* espaces autour du contenu */
+  height:56vh;
+  min-height:340px;
+  max-height:560px;
   background:#000;
-  overflow:hidden;
-  isolation:isolate;
 }
 
-/* photo: couvre uniquement le bloc HERO */
+/* photo full bleed */
 .hero img{
   position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
+  inset:-3px;
+  width:calc(100% + 6px);
+  height:calc(100% + 6px);
   object-fit:cover;
-  object-position:center 12%;
   transform:scale(1.03);
-  z-index:0;
+  object-position:center 12%;
 }
 
-/* ✅ petit dégradé noir uniquement à partir de la zone textes (bas du HERO)
-   -> on le place au-dessus de la photo mais sous le texte */
+/* ✅ Dégradé noir en bas de la photo (sans “transition” vers le bas) */
 .hero::after{
   content:"";
   position:absolute;
-  left:0; right:0; top:0; bottom:0;
-  /* Le dégradé démarre “vers le bas” (autour du texte) et finit noir en bas */
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0) 52%,
-    rgba(0,0,0,.18) 68%,
-    rgba(0,0,0,.45) 86%,
-    rgba(0,0,0,.62) 100%
-  );
+  inset:0;
+  background:
+    radial-gradient(900px 320px at 60% 18%, rgba(255,255,255,.05), transparent 62%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.00) 0%,
+      rgba(0,0,0,.10) 42%,
+      rgba(0,0,0,.78) 80%,
+      rgba(0,0,0,.98) 100%);
   pointer-events:none;
   z-index:1;
 }
 
-/* contenu HERO */
 .overlay{
-  position:relative;
-  z-index:2; /* au-dessus du dégradé */
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:18px;
+  z-index:3;
 }
 
 .name{
@@ -163,7 +160,7 @@ body{
 /* BODY */
 .body{padding:16px 14px 16px;}
 
-/* logo DBC central */
+/* ✅ Logo DBC central (réduit /1.5 par rapport à 128px = ~85px) */
 .dbc-badge{
   display:flex;
   justify-content:center;
@@ -224,7 +221,7 @@ body{
 .ico-phone{background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.34);}
 .ico-web{background:rgba(34,211,238,.16);border-color:rgba(34,211,238,.30);}
 
-/* mail en rouge */
+/* ✅ Mail en rouge avec icône mail */
 .ico-mail{
   background:var(--mailRedBg);
   border-color:var(--mailRedBd);
@@ -256,6 +253,7 @@ body{
 .pill:hover{filter:brightness(1.06);}
 .pill svg{width:18px;height:18px;fill:#fff;}
 
+/* ✅ N° client sous le CTA, centré, même style que footer */
 .client-id{
   margin-top:8px;
   text-align:center;
@@ -263,6 +261,7 @@ body{
   color:rgba(255,255,255,.45);
 }
 
+/* ✅ “Restons en contact…” seul, sans bordure */
 .rest-note{
   margin-top:12px;
   text-align:center;
@@ -271,6 +270,7 @@ body{
   line-height:1.45;
 }
 
+/* footer */
 .footer{
   display:flex;
   justify-content:space-between;
@@ -296,6 +296,7 @@ body{
 
 @media (max-width:420px){
   .name{font-size:28px;}
+  .hero{height:58vh;}
 }
 </style>
 </head>
@@ -304,7 +305,7 @@ body{
   <div class="wrap">
     <div class="card">
 
-      <!-- HERO : la photo s’arrête juste sous les icônes -->
+      <!-- HERO -->
       <div class="hero">
         <img src="Photo.jpg" alt="Berenkan Cinki" />
 
@@ -312,11 +313,14 @@ body{
           <div class="name">Berenkan Cinki</div>
           <div class="role">Ingénieur Travaux chez Demathieu Bard Construction</div>
 
+          <!-- ✅ Logo DBC supprimé sur la photo -->
           <div class="company-row">
             <div class="company-name">Demathieu Bard Construction</div>
           </div>
 
+          <!-- icônes sur photo (fonctionnelles) -->
           <div class="quick-actions" aria-label="Raccourcis">
+            <!-- Email (rouge) -->
             <a class="qbtn email" href="mailto:berenkan.cinki@demathieu-bard.fr" aria-label="Envoyer un email">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -347,10 +351,12 @@ body{
       <!-- BAS -->
       <div class="body">
 
+        <!-- logo DBC central réduit -->
         <div class="dbc-badge">
           <img src="LOGO%20DBC.png" alt="Logo Demathieu Bard Construction">
         </div>
 
+        <!-- ordre bas : Mail, Téléphone, LinkedIn, Site -->
         <a class="link-card" href="mailto:berenkan.cinki@demathieu-bard.fr">
           <div class="link-left">
             <div class="link-ico ico-mail" aria-hidden="true">
@@ -419,6 +425,7 @@ body{
           </svg>
         </a>
 
+        <!-- ✅ Restons en contact seul -->
         <div class="rest-note">Restons en contact pour de futures collaborations.</div>
 
         <div class="bottom-bar">
@@ -430,6 +437,7 @@ body{
           </a>
         </div>
 
+        <!-- ✅ N° client sous le CTA, centré, style footer -->
         <div class="client-id">N° client : 260110 0001</div>
 
         <div class="footer">
