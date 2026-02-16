@@ -57,68 +57,52 @@ body{
   }
 }
 
-/* HERO */
+/* HERO (état “original”) */
 .hero{
   position:relative;
   width:100%;
-  height:56vh;
-  min-height:340px;
-  max-height:560px;
+  /* ✅ la photo s’arrête juste sous les icônes => hauteur auto via le contenu */
+  padding:16px 16px 18px; /* espaces autour du contenu */
   background:#000;
-  overflow:hidden; /* ✅ rien ne dépasse en bas */
+  overflow:hidden;
+  isolation:isolate;
 }
 
-/* photo full bleed */
+/* photo: couvre uniquement le bloc HERO */
 .hero img{
   position:absolute;
-  inset:-3px;
-  width:calc(100% + 6px);
-  height:calc(100% + 6px);
+  inset:0;
+  width:100%;
+  height:100%;
   object-fit:cover;
-  transform:scale(1.03);
   object-position:center 12%;
+  transform:scale(1.03);
   z-index:0;
 }
 
-/* ✅ Dégradé noir en bas : il “mange” la photo,
-   et rien de la photo ne doit apparaître en dessous */
+/* ✅ petit dégradé noir uniquement à partir de la zone textes (bas du HERO)
+   -> on le place au-dessus de la photo mais sous le texte */
 .hero::after{
   content:"";
   position:absolute;
-  inset:0;
-  background:
-    radial-gradient(900px 320px at 60% 18%, rgba(255,255,255,.05), transparent 62%),
-    linear-gradient(180deg,
-      rgba(0,0,0,.00) 0%,
-      rgba(0,0,0,.10) 42%,
-      rgba(0,0,0,.82) 78%,
-      rgba(0,0,0,1.00) 100%);
+  left:0; right:0; top:0; bottom:0;
+  /* Le dégradé démarre “vers le bas” (autour du texte) et finit noir en bas */
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 52%,
+    rgba(0,0,0,.18) 68%,
+    rgba(0,0,0,.45) 86%,
+    rgba(0,0,0,.62) 100%
+  );
   pointer-events:none;
   z-index:1;
 }
 
-/* ✅ Prolongation du noir sous la photo (sans laisser voir l’image) */
-.hero::before{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:120px;                 /* ⬅️ profondeur de “noir” supplémentaire */
-  background:linear-gradient(180deg,
-    rgba(0,0,0,1.00) 0%,
-    rgba(0,0,0,1.00) 100%);
-  pointer-events:none;
-  z-index:2;
-}
-
-/* overlay contenu */
+/* contenu HERO */
 .overlay{
-  position:absolute;
-  left:16px;
-  right:16px;
-  bottom:18px;
-  z-index:3;
+  position:relative;
+  z-index:2; /* au-dessus du dégradé */
 }
 
 .name{
@@ -179,7 +163,7 @@ body{
 /* BODY */
 .body{padding:16px 14px 16px;}
 
-/* ✅ Logo DBC central */
+/* logo DBC central */
 .dbc-badge{
   display:flex;
   justify-content:center;
@@ -240,7 +224,7 @@ body{
 .ico-phone{background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.34);}
 .ico-web{background:rgba(34,211,238,.16);border-color:rgba(34,211,238,.30);}
 
-/* ✅ Mail en rouge */
+/* mail en rouge */
 .ico-mail{
   background:var(--mailRedBg);
   border-color:var(--mailRedBd);
@@ -272,7 +256,6 @@ body{
 .pill:hover{filter:brightness(1.06);}
 .pill svg{width:18px;height:18px;fill:#fff;}
 
-/* ✅ N° client */
 .client-id{
   margin-top:8px;
   text-align:center;
@@ -280,7 +263,6 @@ body{
   color:rgba(255,255,255,.45);
 }
 
-/* ✅ “Restons en contact…” */
 .rest-note{
   margin-top:12px;
   text-align:center;
@@ -289,7 +271,6 @@ body{
   line-height:1.45;
 }
 
-/* footer */
 .footer{
   display:flex;
   justify-content:space-between;
@@ -315,7 +296,6 @@ body{
 
 @media (max-width:420px){
   .name{font-size:28px;}
-  .hero{height:58vh;}
 }
 </style>
 </head>
@@ -324,7 +304,7 @@ body{
   <div class="wrap">
     <div class="card">
 
-      <!-- HERO -->
+      <!-- HERO : la photo s’arrête juste sous les icônes -->
       <div class="hero">
         <img src="Photo.jpg" alt="Berenkan Cinki" />
 
