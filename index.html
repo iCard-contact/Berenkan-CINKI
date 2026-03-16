@@ -76,7 +76,7 @@ body::before{
   z-index:2;
 }
 
-/* Badge statut */
+/* Badge statut — haut gauche */
 .badge-top{
   position:absolute;
   top:16px;left:16px;
@@ -101,6 +101,27 @@ body::before{
   50%{box-shadow:0 0 0 5px rgba(34,197,94,.10);}
 }
 .badge-label{font-size:11px;font-weight:500;color:rgba(255,255,255,.82);letter-spacing:.4px;}
+
+/* Logo iCard — haut droite */
+.logo-hero{
+  position:absolute;
+  top:16px;right:16px;
+  z-index:5;
+  background:rgba(7,9,15,.55);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:5px 8px;
+  display:flex;
+  align-items:center;
+}
+.logo-hero img{
+  height:26px;
+  width:auto;
+  object-fit:contain;
+  opacity:.92;
+}
 
 /* Infos bas de hero */
 .hero-bottom{
@@ -183,22 +204,8 @@ body::before{
   padding:0 8px;
 }
 
-/* Logo DBC au-dessus du CTA */
-.logo-dbc{
-  display:flex;
-  justify-content:center;
-  margin-top:22px;
-  margin-bottom:14px;
-}
-.logo-dbc img{
-  height:64px;
-  width:auto;
-  object-fit:contain;
-  opacity:.92;
-  filter:drop-shadow(0 4px 16px rgba(0,0,0,.45));
-}
-
 /* CTA */
+.cta-wrap{margin-top:18px;}
 .cta{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;padding:15px 18px;border-radius:999px;
@@ -215,23 +222,23 @@ body::before{
 }
 .cta svg{width:18px;height:18px;fill:#fff;}
 
-/* Footer + logo iCard */
+/* Footer avec logo DBC agrandi */
 .footer-wrap{
   margin-top:24px;
   padding-top:16px;
   border-top:1px solid var(--stroke);
 }
-.logo-icard{
+.logo-dbc-footer{
   display:flex;
   justify-content:center;
-  margin-bottom:14px;
+  margin-bottom:16px;
 }
-.logo-icard img{
-  height:52px;
+.logo-dbc-footer img{
+  height:90px;
   width:auto;
   object-fit:contain;
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));
-  opacity:.88;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));
+  opacity:.94;
 }
 .footer{
   display:flex;
@@ -246,7 +253,7 @@ body::before{
 .animate{opacity:0;animation:fadeUp .5s ease forwards;}
 .a1{animation-delay:.08s;}.a2{animation-delay:.16s;}.a3{animation-delay:.24s;}
 .a4{animation-delay:.32s;}.a5{animation-delay:.40s;}.a6{animation-delay:.50s;}
-.a7{animation-delay:.58s;}.a8{animation-delay:.66s;}.a9{animation-delay:.74s;}
+.a7{animation-delay:.58s;}.a8{animation-delay:.66s;}
 
 @media(min-width:460px){
   body{padding:28px 16px 48px;align-items:flex-start;}
@@ -264,9 +271,15 @@ body::before{
     <img class="photo" src="Photo.jpg" alt="Berenkan Cinki"/>
     <div class="hero-fade"></div>
 
+    <!-- Badge statut — haut gauche -->
     <div class="badge-top animate a1">
       <div class="badge-dot"></div>
       <span class="badge-label">Ingénieur Travaux</span>
+    </div>
+
+    <!-- Logo iCard — haut droite -->
+    <div class="logo-hero animate a1">
+      <img src="5.png" alt="iCard"/>
     </div>
 
     <div class="hero-bottom">
@@ -310,20 +323,17 @@ body::before{
     <div class="sep animate a6"></div>
     <div class="note animate a6">Restons en contact pour de futures collaborations.</div>
 
-    <!-- Logo DBC juste au-dessus du CTA -->
-    <div class="logo-dbc animate a7">
-      <img src="LOGO%20DBC.png" alt="Demathieu Bard Construction"/>
+    <div class="cta-wrap animate a7">
+      <a class="cta" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
+        <svg viewBox="0 0 24 24"><path d="M15 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-8 6v-1c0-2.21 3.58-4 8-4 .7 0 1.38.05 2.02.14-.65.64-1.02 1.53-1.02 2.46V20H7zm14-3v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2zM7 10c0 2.21 1.79 4 4 4 .75 0 1.46-.21 2.06-.57C12.4 12.48 12 11.28 12 10c0-1.28.4-2.48 1.06-3.43C12.46 6.21 11.75 6 11 6c-2.21 0-4 1.79-4 4z"/></svg>
+        Ajouter à mes contacts
+      </a>
     </div>
 
-    <a class="cta animate a8" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
-      <svg viewBox="0 0 24 24"><path d="M15 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-8 6v-1c0-2.21 3.58-4 8-4 .7 0 1.38.05 2.02.14-.65.64-1.02 1.53-1.02 2.46V20H7zm14-3v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2zM7 10c0 2.21 1.79 4 4 4 .75 0 1.46-.21 2.06-.57C12.4 12.48 12 11.28 12 10c0-1.28.4-2.48 1.06-3.43C12.46 6.21 11.75 6 11 6c-2.21 0-4 1.79-4 4z"/></svg>
-      Ajouter à mes contacts
-    </a>
-
-    <!-- Footer avec logo iCard -->
-    <div class="footer-wrap animate a9">
-      <div class="logo-icard">
-        <img src="5.png" alt="iCard"/>
+    <!-- Footer avec logo DBC agrandi -->
+    <div class="footer-wrap animate a8">
+      <div class="logo-dbc-footer">
+        <img src="LOGO%20DBC.png" alt="Demathieu Bard Construction"/>
       </div>
       <div class="footer">
         <span>© iCard</span>
