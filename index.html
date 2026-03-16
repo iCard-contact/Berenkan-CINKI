@@ -125,33 +125,16 @@ body::before{
   letter-spacing:.2px;
   line-height:1.5;
 }
-
-/* Company pill avec logo DBC intégré */
 .company-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
+  display:inline-flex;align-items:center;gap:6px;
   margin-top:10px;
   background:var(--blueBg);
   border:1px solid var(--blueBd);
   border-radius:999px;
-  padding:5px 13px 5px 5px;
+  padding:4px 11px 4px 8px;
 }
-.pill-logo{
-  height:22px;
-  width:auto;
-  object-fit:contain;
-  border-radius:999px;
-  background:rgba(255,255,255,.10);
-  padding:2px 6px;
-  filter:brightness(1.1);
-}
-.company-name{
-  font-size:11.5px;
-  font-weight:500;
-  color:var(--blue2);
-  letter-spacing:.3px;
-}
+.company-dot{width:6px;height:6px;border-radius:50%;background:var(--blue2);}
+.company-name{font-size:11.5px;font-weight:500;color:var(--blue2);letter-spacing:.3px;}
 
 /* ── BODY ── */
 .body{padding:20px 16px 32px;}
@@ -200,8 +183,22 @@ body::before{
   padding:0 8px;
 }
 
+/* Logo DBC au-dessus du CTA */
+.logo-dbc{
+  display:flex;
+  justify-content:center;
+  margin-top:22px;
+  margin-bottom:14px;
+}
+.logo-dbc img{
+  height:64px;
+  width:auto;
+  object-fit:contain;
+  opacity:.92;
+  filter:drop-shadow(0 4px 16px rgba(0,0,0,.45));
+}
+
 /* CTA */
-.cta-wrap{margin-top:18px;}
 .cta{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;padding:15px 18px;border-radius:999px;
@@ -249,7 +246,7 @@ body::before{
 .animate{opacity:0;animation:fadeUp .5s ease forwards;}
 .a1{animation-delay:.08s;}.a2{animation-delay:.16s;}.a3{animation-delay:.24s;}
 .a4{animation-delay:.32s;}.a5{animation-delay:.40s;}.a6{animation-delay:.50s;}
-.a7{animation-delay:.58s;}.a8{animation-delay:.66s;}
+.a7{animation-delay:.58s;}.a8{animation-delay:.66s;}.a9{animation-delay:.74s;}
 
 @media(min-width:460px){
   body{padding:28px 16px 48px;align-items:flex-start;}
@@ -276,7 +273,7 @@ body::before{
       <div class="name animate a2">Berenkan Cinki</div>
       <div class="role animate a3">Ingénieur Travaux · Demathieu Bard Construction</div>
       <div class="company-pill animate a3">
-        <img class="pill-logo" src="LOGO%20DBC.png" alt="DBC"/>
+        <div class="company-dot"></div>
         <span class="company-name">Demathieu Bard Construction</span>
       </div>
     </div>
@@ -313,15 +310,18 @@ body::before{
     <div class="sep animate a6"></div>
     <div class="note animate a6">Restons en contact pour de futures collaborations.</div>
 
-    <div class="cta-wrap animate a7">
-      <a class="cta" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
-        <svg viewBox="0 0 24 24"><path d="M15 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-8 6v-1c0-2.21 3.58-4 8-4 .7 0 1.38.05 2.02.14-.65.64-1.02 1.53-1.02 2.46V20H7zm14-3v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2zM7 10c0 2.21 1.79 4 4 4 .75 0 1.46-.21 2.06-.57C12.4 12.48 12 11.28 12 10c0-1.28.4-2.48 1.06-3.43C12.46 6.21 11.75 6 11 6c-2.21 0-4 1.79-4 4z"/></svg>
-        Ajouter à mes contacts
-      </a>
+    <!-- Logo DBC juste au-dessus du CTA -->
+    <div class="logo-dbc animate a7">
+      <img src="LOGO%20DBC.png" alt="Demathieu Bard Construction"/>
     </div>
 
+    <a class="cta animate a8" href="https://icard-contact.github.io/Berenkan-CINKI/berenkan.vcf">
+      <svg viewBox="0 0 24 24"><path d="M15 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-8 6v-1c0-2.21 3.58-4 8-4 .7 0 1.38.05 2.02.14-.65.64-1.02 1.53-1.02 2.46V20H7zm14-3v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2zM7 10c0 2.21 1.79 4 4 4 .75 0 1.46-.21 2.06-.57C12.4 12.48 12 11.28 12 10c0-1.28.4-2.48 1.06-3.43C12.46 6.21 11.75 6 11 6c-2.21 0-4 1.79-4 4z"/></svg>
+      Ajouter à mes contacts
+    </a>
+
     <!-- Footer avec logo iCard -->
-    <div class="footer-wrap animate a8">
+    <div class="footer-wrap animate a9">
       <div class="logo-icard">
         <img src="5.png" alt="iCard"/>
       </div>
