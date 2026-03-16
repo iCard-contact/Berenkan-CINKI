@@ -102,25 +102,18 @@ body::before{
 }
 .badge-label{font-size:11px;font-weight:500;color:rgba(255,255,255,.82);letter-spacing:.4px;}
 
-/* Logo iCard — haut droite */
+/* Logo iCard — haut droite, sans encadrement */
 .logo-hero{
   position:absolute;
   top:16px;right:16px;
   z-index:5;
-  background:rgba(7,9,15,.55);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:12px;
-  padding:5px 8px;
-  display:flex;
-  align-items:center;
 }
 .logo-hero img{
-  height:26px;
+  height:32px;
   width:auto;
   object-fit:contain;
-  opacity:.92;
+  opacity:.90;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));
 }
 
 /* Infos bas de hero */
@@ -277,7 +270,7 @@ body::before{
       <span class="badge-label">Ingénieur Travaux</span>
     </div>
 
-    <!-- Logo iCard — haut droite -->
+    <!-- Logo iCard — haut droite, sans encadrement -->
     <div class="logo-hero animate a1">
       <img src="5.png" alt="iCard"/>
     </div>
